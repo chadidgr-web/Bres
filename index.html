@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bres Antwerpen — Casual gemixte keuken</title>
+  <meta name="description" content="Bres in Antwerpen. Casual gemixte keuken. Contact, openingsuren en locatie." />
+  <meta name="theme-color" content="#0b0b0b" />
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --card:#111;
+      --text:#f5f5f5;
+      --muted:#b9b9b9;
+      --line:rgba(255,255,255,.12);
+      --max:1100px;
+      --pad:18px;
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:radial-gradient(1200px 700px at 20% -10%, rgba(255,255,255,.10), transparent 55%),
+                 radial-gradient(900px 600px at 90% 10%, rgba(255,255,255,.07), transparent 55%),
+                 var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(11,11,11,.7);
+      border-bottom:1px solid var(--line);
+    }
+    nav{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px var(--pad);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; letter-spacing:.2px;
+      text-decoration:none;
+    }
+    .mark{
+      width:28px; height:28px; border-radius:9px;
+      border:1px solid var(--line);
+      background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.03));
+      display:grid; place-items:center;
+      font-size:14px;
+    }
+    .links{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+    .links a{opacity:.92; text-decoration:none}
+    .links a:hover{opacity:1; text-decoration:underline}
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.28);
+      text-decoration:none;
+    }
+    .btn.primary{
+      background:#fff; color:#0b0b0b; border-color:#fff;
+      font-weight:650;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    main{max-width:var(--max); margin:0 auto; padding:0 var(--pad) 56px}
+    .hero{
+      padding:38px 0 18px;
+      display:grid; gap:14px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(30px, 4.1vw, 52px);
+      letter-spacing:-.4px;
+    }
+    .lead{color:var(--muted); max-width:70ch}
+    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .pill{
+      border:1px solid var(--line);
+      padding:7px 10px;
+      border-radius:999px;
+      color:rgba(255,255,255,.86);
+      font-size:13px;
+      background:rgba(255,255,255,.04);
+    }
+    .grid{
+      display:grid; gap:16px;
+      grid-template-columns:repeat(12,1fr);
+      margin-top:16px;
+    }
+    .card{
+      grid-column:span 12;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius:var(--r);
+      padding:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    @media (min-width: 900px){
+      .col6{grid-column:span 6}
+      .col4{grid-column:span 4}
+      .col8{grid-column:span 8}
+    }
+    h2{margin:0 0 8px; font-size:22px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .kv{
+      display:grid;
+      grid-template-columns: 120px 1fr;
+      gap:10px 14px;
+      margin-top:10px;
+      font-size:15px;
+    }
+    .kv div:nth-child(odd){color:rgba(255,255,255,.78)}
+    .kv a{color:#fff}
+    .divider{height:1px; background:var(--line); margin:14px 0}
+    .form{
+      display:grid; gap:10px;
+      margin-top:10px;
+    }
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      color:var(--text);
+      font:inherit;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .small{font-size:13px; color:rgba(255,255,255,.72)}
+    footer{
+      border-top:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+    }
+    footer .inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:18px var(--pad);
+      color:rgba(255,255,255,.72);
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a class="brand" href="#top" aria-label="Bres home">
+        <span class="mark">B</span>
+        <span>Bres</span>
+      </a>
+
+      <div class="links">
+        <a href="#over">Over</a>
+        <a href="#concept">Concept</a>
+        <a href="#locatie">Locatie</a>
+        <a class="btn primary" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>Bres — casual gemixte keuken in Antwerpen</h1>
+      <p class="lead">
+        Een relaxte plek voor goede borden, fijne vibes en smaken van overal — zonder gedoe.
+        Binnenkort volgt het menu.
+      </p>
+
+      <div class="pillrow" aria-label="Highlights">
+        <span class="pill">Casual dining</span>
+        <span class="pill">Gemixte keuken</span>
+        <span class="pill">Antwerpen</span>
+      </div>
+
+      <div class="pillrow">
+        <a class="btn primary" href="#contact">Neem contact op</a>
+        <a class="btn" href="#locatie">Bekijk locatie</a>
+      </div>
+    </section>
+
+    <section class="grid" id="over">
+      <div class="card col6">
+        <h2>Over Bres</h2>
+        <p class="muted">
+          Bres is jouw casual spot in Antwerpen voor gedeelde gerechtjes en klassiekers met een twist.
+          Perfect voor een snelle hap of een lange avond.
+        </p>
+        <div class="divider"></div>
+        <p class="small">
+          (Tip: zodra je logo er is, vervang je het “B” blokje bovenaan door je echte logo.)
+        </p>
+      </div>
+
+      <div class="card col6" id="concept">
+        <h2>Concept</h2>
+        <p class="muted">Gemixte keuken met focus op:</p>
+        <ul class="muted" style="margin:8px 0 0 18px;">
+          <li>Seizoensproducten</li>
+          <li>Sharing & comfort food</li>
+          <li>Vegetarische opties</li>
+          <li>Goede dranken (wine/beer/cocktails — als relevant)</li>
+        </ul>
+        <p class="small" style="margin-top:12px;">
+          Menu komt eraan — wil je toch al “suggesties van de chef” tonen? Dan maak ik een mini-menu sectie die je makkelijk kunt updaten.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid" id="locatie" style="margin-top:16px;">
+      <div class="card col6">
+        <h2>Locatie</h2>
+        <p class="muted">Vul hier je exacte adres in zodra je het wil publiceren.</p>
+        <div class="kv">
+          <div>Adres</div><div>Straat + nr, 2000 Antwerpen</div>
+          <div>Open</div><div>di–zo 12:00–14:30 & 18:00–22:00 (voorbeeld)</div>
+          <div>Parkeren</div><div>Tip: dichtstbijzijnde parking / fietsinfo</div>
+        </div>
+        <div class="divider"></div>
+        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps">Open in Google Maps</a>
+        <p class="small">Ik kan dit vervangen door een echte ingesloten kaart zodra je adres vastligt.</p>
+      </div>
+
+      <div class="card col6" id="contact">
+        <h2>Contact</h2>
+        <p class="muted">Bel, mail of stuur een bericht.</p>
+
+        <div class="kv">
+          <div>Telefoon</div><div><a href="tel:+32">+32 …</a></div>
+          <div>E-mail</div><div><a href="mailto:info@bres-antwerpen.be">info@bres-antwerpen.be</a></div>
+          <div>Instagram</div><div><a href="#" onclick="return false;">@bres.antwerpen</a></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Simpel contactformulier via mailto (geen server nodig). Later kan dit via Formspree/Netlify Forms. -->
+        <form class="form" onsubmit="return sendMail(event)">
+          <input id="name" name="name" placeholder="Naam" autocomplete="name" required />
+          <input id="email" name="email" type="email" placeholder="E-mail" autocomplete="email" required />
+          <textarea id="msg" name="msg" placeholder="Bericht" required></textarea>
+          <button class="btn primary" type="submit">Verstuur</button>
+          <div class="small">Dit opent je mailapp om te versturen. Wil je een “echt” formulier? Zeg het en ik zet Formspree/Netlify Forms klaar.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="inner">
+      <div>© <span id="y"></span> Bres — Antwerpen</div>
+      <div>Privacyverklaring (later) · BTW (later)</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    function sendMail(e){
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const msg = document.getElementById("msg").value.trim();
+
+      const subject = encodeURIComponent("Contact via website — Bres");
+      const body = encodeURIComponent(
+        `Naam: ${name}\nE-mail: ${email}\n\nBericht:\n${msg}\n`
+      );
+
+      // Pas dit aan naar je echte e-mailadres:
+      const to = "info@bres-antwerpen.be";
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      return false;
+    }
+  </script>
+</body>
+</html>
