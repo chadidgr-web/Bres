@@ -152,10 +152,75 @@
       justify-content:space-between;
       font-size:13px;
     }
+    /* INTRO OVERLAY */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  overflow:hidden;
+}
+
+.intro-bg{
+  position:absolute;
+  inset:0;
+  background-image:url("images/hero.jpg");
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.05);
+}
+
+.intro-overlay{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.75)
+  );
+}
+
+.intro-logo{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  z-index:2;
+}
+
+.intro-logo span{
+  font-size:clamp(48px, 8vw, 96px);
+  letter-spacing:0.25em;
+  font-weight:700;
+  color:#fff;
+  opacity:0;
+  animation:logoFadeIn 1.4s ease forwards;
+}
+
+@keyframes logoFadeIn{
+  to{ opacity:1 }
+}
+
+#intro.hide{
+  animation:introFadeOut 1.2s ease forwards;
+}
+
+@keyframes introFadeOut{
+  to{ opacity:0; visibility:hidden; }
+}
+
   </style>
 </head>
 
 <body>
+  <!-- INTRO OVERLAY -->
+<div id="intro">
+  <div class="intro-bg"></div>
+  <div class="intro-overlay"></div>
+  <div class="intro-logo">
+    <span>BRES</span>
+  </div>
+</div>
+
   <header>
     <nav>
       <a class="brand" href="#top" aria-label="Bres home">
@@ -285,5 +350,15 @@
       return false;
     }
   </script>
+  <script>
+  window.addEventListener("load", () => {
+    const intro = document.getElementById("intro");
+    setTimeout(() => {
+      intro.classList.add("hide");
+    }, 2000);
+  });
+</script>
+
 </body>
 </html>
+
