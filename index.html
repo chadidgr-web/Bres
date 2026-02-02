@@ -41,27 +41,31 @@ body.intro-active footer {
       background:rgba(11,11,11,.7);
       border-bottom:1px solid var(--line);
     }
-    nav{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:12px var(--pad);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:700; letter-spacing:.2px;
-      text-decoration:none;
-    }
-    .mark{
-      width:28px; height:28px; border-radius:9px;
-      border:1px solid var(--line);
-      background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.03));
-      display:grid; place-items:center;
-      font-size:14px;
-    }
+/* Header met gecentreerd logo */
+.nav-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tijdelijk logo-blok */
+.mark {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.3);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
     .links{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
     .links a{opacity:.92; text-decoration:none}
     .links a:hover{opacity:1; text-decoration:underline}
@@ -229,107 +233,17 @@ body.intro-active footer {
  <div class="intro-logo"></div>
 </div>
 
-  <header>
-    <nav>
-      <a class="brand" href="#top" aria-label="Bres home">
-        <span class="mark">B</span>
-        <span>Bres</span>
-      </a>
+<header>
+  <nav class="nav-center">
+    <a class="brand" href="#">
+      <!-- tijdelijk tekstlogo, later vervangen door image -->
+      <span class="mark">B</span>
+    </a>
+  </nav>
+</header>
 
-      <div class="links">
-        <a href="#over">Over</a>
-        <a href="#concept">Concept</a>
-        <a href="#locatie">Locatie</a>
-        <a class="btn primary" href="#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <h1>Bres — casual gemixte keuken in Antwerpen</h1>
-      <p class="lead">
-        Een relaxte plek voor goede borden, fijne vibes en smaken van overal — zonder gedoe.
-        Binnenkort volgt het menu.
-      </p>
-
-      <div class="pillrow" aria-label="Highlights">
-        <span class="pill">Casual dining</span>
-        <span class="pill">Gemixte keuken</span>
-        <span class="pill">Antwerpen</span>
-      </div>
-
-      <div class="pillrow">
-        <a class="btn primary" href="#contact">Neem contact op</a>
-        <a class="btn" href="#locatie">Bekijk locatie</a>
-      </div>
-    </section>
-
-    <section class="grid" id="over">
-      <div class="card col6">
-        <h2>Over Bres</h2>
-        <p class="muted">
-          Bres is jouw casual spot in Antwerpen voor gedeelde gerechtjes en klassiekers met een twist.
-          Perfect voor een snelle hap of een lange avond.
-        </p>
-        <div class="divider"></div>
-        <p class="small">
-          (Tip: zodra je logo er is, vervang je het “B” blokje bovenaan door je echte logo.)
-        </p>
-      </div>
-
-      <div class="card col6" id="concept">
-        <h2>Concept</h2>
-        <p class="muted">Gemixte keuken met focus op:</p>
-        <ul class="muted" style="margin:8px 0 0 18px;">
-          <li>Seizoensproducten</li>
-          <li>Sharing & comfort food</li>
-          <li>Vegetarische opties</li>
-          <li>Goede dranken (wine/beer/cocktails — als relevant)</li>
-        </ul>
-        <p class="small" style="margin-top:12px;">
-          Menu komt eraan — wil je toch al “suggesties van de chef” tonen? Dan maak ik een mini-menu sectie die je makkelijk kunt updaten.
-        </p>
-      </div>
-    </section>
-
-    <section class="grid" id="locatie" style="margin-top:16px;">
-      <div class="card col6">
-        <h2>Locatie</h2>
-        <p class="muted">Vul hier je exacte adres in zodra je het wil publiceren.</p>
-        <div class="kv">
-          <div>Adres</div><div>Straat + nr, 2000 Antwerpen</div>
-          <div>Open</div><div>di–zo 12:00–14:30 & 18:00–22:00 (voorbeeld)</div>
-          <div>Parkeren</div><div>Tip: dichtstbijzijnde parking / fietsinfo</div>
-        </div>
-        <div class="divider"></div>
-        <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps">Open in Google Maps</a>
-        <p class="small">Ik kan dit vervangen door een echte ingesloten kaart zodra je adres vastligt.</p>
-      </div>
-
-      <div class="card col6" id="contact">
-        <h2>Contact</h2>
-        <p class="muted">Bel, mail of stuur een bericht.</p>
-
-        <div class="kv">
-          <div>Telefoon</div><div><a href="tel:+32">+32 …</a></div>
-          <div>E-mail</div><div><a href="mailto:info@bres-antwerpen.be">info@bres-antwerpen.be</a></div>
-          <div>Instagram</div><div><a href="#" onclick="return false;">@bres.antwerpen</a></div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Simpel contactformulier via mailto (geen server nodig). Later kan dit via Formspree/Netlify Forms. -->
-        <form class="form" onsubmit="return sendMail(event)">
-          <input id="name" name="name" placeholder="Naam" autocomplete="name" required />
-          <input id="email" name="email" type="email" placeholder="E-mail" autocomplete="email" required />
-          <textarea id="msg" name="msg" placeholder="Bericht" required></textarea>
-          <button class="btn primary" type="submit">Verstuur</button>
-          <div class="small">Dit opent je mailapp om te versturen. Wil je een “echt” formulier? Zeg het en ik zet Formspree/Netlify Forms klaar.</div>
-        </form>
-      </div>
-    </section>
-  </main>
+  <main id="top"></main>
 
   <footer>
     <div class="inner">
