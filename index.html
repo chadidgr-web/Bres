@@ -173,7 +173,7 @@ body.intro-active footer {
 .intro-bg{
   position:absolute;
   inset:0;
-  background-image:url("images/hero.jpg");
+  background-image:url("images/intro.svg");
   background-size:cover;
   background-position:center;
   transform:scale(1.05);
@@ -217,6 +217,18 @@ body.intro-active footer {
 @keyframes introFadeOut{
   to{ opacity:0; visibility:hidden; }
 }
+.nav-center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:14px 0;
+}
+
+.nav-logo{
+  height:34px;   /* mag je later aanpassen */
+  width:auto;
+  display:block;
+}
 
   </style>
 </head>
@@ -236,8 +248,7 @@ body.intro-active footer {
 <header>
   <nav class="nav-center">
     <a class="brand" href="#">
-      <!-- tijdelijk tekstlogo, later vervangen door image -->
-      <span class="mark">B</span>
+      <img src="images/logo.svg" alt="Bres logo" class="nav-logo">
     </a>
   </nav>
 </header>
@@ -283,6 +294,7 @@ body.intro-active footer {
 
 </body>
 </html>
+
 
 
 
