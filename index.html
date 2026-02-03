@@ -173,7 +173,7 @@ body.intro-active footer {
   background-image:url("images/intro.svg");
   background-size:cover;
   background-position:center;
-  transform:scale(1.05);
+  transform:scale(1.01);
 }
 
 .intro-overlay{
@@ -181,10 +181,11 @@ body.intro-active footer {
   inset:0;
   background:radial-gradient(
     circle at center,
-    rgba(0,0,0,0.45),
-    rgba(0,0,0,0.75)
+    rgba(255,255,255,0.75),
+    rgba(255,255,255,0.95)
   );
 }
+
 
 .intro-logo{
   position:absolute;
@@ -225,6 +226,16 @@ body.intro-active footer {
   height:56px;   /* mag je later aanpassen */
   width:auto;
   display:block;
+}
+/* Verberg header tijdens intro */
+body.intro-active header{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* Zorg dat header netjes in fade-in't */
+header{
+  transition: opacity 0.5s ease;
 }
 
   </style>
@@ -281,16 +292,25 @@ body.intro-active footer {
     }
   </script>
   <script>
+  <script>
   window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
+
+    // Verberg header (en eventueel andere dingen) tijdens intro
+    document.body.classList.add("intro-active");
+
     setTimeout(() => {
+      // Intro weg
       intro.classList.add("hide");
+
+      // Header tonen
+      document.body.classList.remove("intro-active");
     }, 2000);
   });
 </script>
-
 </body>
 </html>
+
 
 
 
