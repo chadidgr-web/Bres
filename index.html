@@ -237,6 +237,114 @@ body.intro-active header{
 header{
   transition: opacity 0.5s ease;
 }
+/* Layout voor voorpagina info */
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 36px 18px 60px;
+}
+
+.info-grid{
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px){
+  .info-grid{
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: start;
+  }
+}
+
+.info-card{
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 18px;
+  padding: 18px;
+  background: #fff;
+}
+
+.page-title{
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: -0.2px;
+  color: #111;
+}
+
+.page-subtitle{
+  margin: 6px 0 0;
+  color: #666;
+}
+
+.divider{
+  height: 1px;
+  background: rgba(0,0,0,.10);
+  margin: 14px 0;
+}
+
+.kv{
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px 14px;
+  margin-top: 10px;
+  color: #111;
+}
+
+.kv div:nth-child(odd){
+  color: #666;
+}
+
+.kv a{
+  color: #111;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.btn{
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.18);
+  text-decoration: none;
+  color: #111;
+  background: #fff;
+}
+
+.btn:hover{
+  border-color: rgba(0,0,0,.28);
+}
+
+.hours{
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.hours .row{
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(0,0,0,.12);
+  color: #111;
+}
+
+.hours .row:last-child{
+  border-bottom: none;
+}
+
+.note{
+  margin: 12px 0 0;
+  color: #666;
+  font-size: 13px;
+}
 
   </style>
 </head>
@@ -262,7 +370,46 @@ header{
 </header>
 
 
-  <main id="top"></main>
+  <main id="top">
+  <section class="container">
+    <div class="info-grid">
+      <div class="info-card">
+        <h1 class="page-title">Bres</h1>
+        <p class="page-subtitle">Casual gemixte keuken — Antwerpen</p>
+
+        <div class="divider"></div>
+
+        <h2>Contact</h2>
+        <div class="kv">
+          <div>Telefoon</div><div><a href="tel:+32XXXXXXXXX">+32 …</a></div>
+          <div>E-mail</div><div><a href="mailto:info@restaurantbres.be">info@restaurantbres.be</a></div>
+          <div>Adres</div><div>Straat + nr, 2000 Antwerpen</div>
+        </div>
+
+        <div class="actions">
+          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps">Open in Google Maps</a>
+          <a class="btn" href="mailto:info@restaurantbres.be?subject=Contact%20via%20website%20—%20Bres">Mail ons</a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h2>Openingsuren</h2>
+        <div class="hours">
+          <div class="row"><div>Ma</div><div>Gesloten</div></div>
+          <div class="row"><div>Di</div><div>12:00–14:30 · 18:00–22:00</div></div>
+          <div class="row"><div>Wo</div><div>12:00–14:30 · 18:00–22:00</div></div>
+          <div class="row"><div>Do</div><div>12:00–14:30 · 18:00–22:00</div></div>
+          <div class="row"><div>Vr</div><div>12:00–14:30 · 18:00–23:00</div></div>
+          <div class="row"><div>Za</div><div>18:00–23:00</div></div>
+          <div class="row"><div>Zo</div><div>12:00–14:30 · 18:00–22:00</div></div>
+        </div>
+
+        <p class="note">Keuken sluit 30 min voor sluitingstijd. (Pas dit aan als je wil.)</p>
+      </div>
+    </div>
+  </section>
+</main>
+
 
   <footer>
     <div class="inner">
@@ -310,6 +457,7 @@ header{
 </script>
 </body>
 </html>
+
 
 
 
