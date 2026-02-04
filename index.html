@@ -163,6 +163,21 @@ html.intro-active footer {
       justify-content:space-between;
       font-size:13px;
     }
+:root{
+  --font-body: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-brush: "Permanent Marker", cursive;
+}
+
+body{
+  font-family: var(--font-body);
+}
+
+/* Alleen headings in brush-stijl */
+h1, h2, .page-title{
+  font-family: var(--font-brush);
+  letter-spacing: 0.5px;
+}
+
     /* INTRO OVERLAY */
 #intro{
   position:fixed;
@@ -416,6 +431,10 @@ header, main, footer {
 }
 
   </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -526,6 +545,7 @@ header, main, footer {
 </script>
 </body>
 </html>
+
 
 
 
