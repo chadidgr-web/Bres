@@ -345,6 +345,21 @@ header{
   color: #666;
   font-size: 13px;
 }
+/* Intro: altijd betrouwbaar verbergen */
+#intro{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease, visibility 0s linear 0.8s;
+}
+
+#intro.hide{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
 
   </style>
 </head>
@@ -433,30 +448,28 @@ header{
       );
 
       // Pas dit aan naar je echte e-mailadres:
-      const to = "info@bres-antwerpen.be";
+      const to = "info@restaurantbres.be";
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       return false;
     }
   </script>
-  <script>
-  <script>
+<script>
   window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
+    if (!intro) return;
 
-    // Verberg header (en eventueel andere dingen) tijdens intro
+    // header pas tonen na intro (zoals jij wilde)
     document.body.classList.add("intro-active");
 
     setTimeout(() => {
-      // Intro weg
       intro.classList.add("hide");
-
-      // Header tonen
       document.body.classList.remove("intro-active");
     }, 2000);
   });
 </script>
 </body>
 </html>
+
 
 
 
