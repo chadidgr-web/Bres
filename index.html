@@ -183,10 +183,8 @@ h1, .page-title{
   position: fixed;
   inset: 0;
   z-index: 9999;
-  transform: translateY(0);
-  opacity: 1;
-  transition: transform 0.9s cubic-bezier(.2,.7,.2,1);
 }
+
 
 #intro.hide{
   transform: translateY(-100%);
@@ -417,9 +415,6 @@ header, main, footer {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.8s ease, visibility 0s linear 0.8s;
 }
 
 #intro.hide{
@@ -562,10 +557,6 @@ html:not(.intro-active) header{
   position: fixed;
   inset: 0;
   z-index: 9999;
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-  transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.3s ease;
 }
 
 #intro.hide{
@@ -815,10 +806,12 @@ const intro = intros[0];
         flying.style.opacity = "1";
 
         // 5) Na animatie: toon het echte header-logo, verwijder de kopie
-       setTimeout(() => {
+      setTimeout(() => {
   headerLogo.style.opacity = "1";
   flying.remove();
-  intro.style.display = "none";
+
+  // INTRO DEFINITIEF WEG (zodat hij niet achter je tekst blijft)
+  intro.remove(); // of: intro.style.display = "none";
 }, 950);
 
       });
@@ -829,6 +822,7 @@ const intro = intros[0];
   
 </body>
 </html>
+
 
 
 
