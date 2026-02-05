@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="nl">
 <head>
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
   <meta charset="utf-8" />
   <script>
   document.documentElement.classList.add("intro-active");
@@ -138,6 +139,15 @@ html.intro-active footer {
       color:var(--text);
       font:inherit;
     }
+    @media (max-width: 600px){
+  .container.center{
+    padding-top: 42px;
+    padding-bottom: 64px;
+  }
+  .stack{ gap: 56px; }
+  .page-title{ font-size: 28px; }
+}
+
     textarea{min-height:120px; resize:vertical}
     .small{font-size:13px; color:rgba(255,255,255,.72)}
     footer{
@@ -384,13 +394,13 @@ header, main, footer {
 
 .stack{
   display: grid;
-  gap: 64px;
+  gap: 72px;
 }
 .divider{
-  width: 120px;
+  width: 140px;
   height: 1px;
-  margin: 26px auto;
-  background: rgba(0,0,0,.15);
+  margin: 10px auto 0;
+  background: rgba(0,0,0,.18);
 }
 
 
@@ -523,6 +533,21 @@ body{
 
       <div>
         <h1 class="page-title">Openingsuren</h1>
+        <p id="openStatus" class="status">Status laden…</p>
+<p id="openDetails" class="status-sub"></p>
+        
+.status{
+  margin: 10px 0 0;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.status-sub{
+  margin: 6px 0 0;
+  color: #555;
+  font-size: 14px;
+}
+
 
         <div class="hours-text">
           <p><strong>Geopend van woensdag tot zaterdag</strong></p>
@@ -542,6 +567,14 @@ body{
 
       <div>
         <h1 class="page-title">Contact</h1>
+        <div class="actions center-actions">
+  <a class="btn" href="tel:+3233229791">Bel</a>
+  <a class="btn" href="mailto:info@restaurantbres.be">Mail</a>
+  <a class="btn" target="_blank" rel="noopener"
+     href="https://www.google.com/maps?q=Bresstraat%2010%2C%20Antwerpen">
+     Route
+  </a>
+</div>
 
         <div class="contact-text">
           <p>Bresstraat 10, Antwerpen</p>
@@ -549,6 +582,25 @@ body{
           <p><a href="tel:+32465093915">+32 465 09 39 15</a></p>
         </div>
       </div>
+          .actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:16px;
+  justify-content:center;
+}
+
+.btn{
+  display:inline-block;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.18);
+  text-decoration:none;
+  color:#111;
+  background:#fff;
+}
+.btn:hover{ border-color: rgba(0,0,0,.30); }
+
 
     </div>
   </section>
@@ -608,8 +660,83 @@ body{
     }, 2000);
   });
 </script>
+      <script>
+  // Openingstijden Bres (Antwerpen) — Europe/Brussels
+  // Avond: wo-za 19:00–22:00
+  // Lunch: wo-vr 12:00–14:30
+  function getBrusselsNowParts(){
+    const dtf = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Brussels",
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
+    const parts = dtf.formatToParts(new Date());
+    const map = Object.fromEntries(parts.map(p => [p.type, p.value]));
+    return {
+      weekday: map.weekday,                 // Mon, Tue, Wed...
+      minutes: parseInt(map.hour,10)*60 + parseInt(map.minute,10)
+    };
+  }
+
+  function isOpen(weekday, minutes){
+    const day = weekday; // Mon Tue Wed Thu Fri Sat Sun (en-GB short)
+    const inLunchDays = (day === "Wed" || day === "Thu" || day === "Fri");
+    const inDinnerDays = (day === "Wed" || day === "Thu" || day === "Fri" || day === "Sat");
+
+    const lunchOpen = 12*60;       // 12:00
+    const lunchClose = 14*60 + 30; // 14:30
+    const dinnerOpen = 19*60;      // 19:00
+    const dinnerClose = 22*60;     // 22:00
+
+    const lunch = inLunchDays && minutes >= lunchOpen && minutes < lunchClose;
+    const dinner = inDinnerDays && minutes >= dinnerOpen && minutes < dinnerClose;
+
+    return { lunch, dinner, open: lunch || dinner };
+  }
+
+  function setStatus(){
+    const statusEl = document.getElementById("openStatus");
+    const detailsEl = document.getElementById("openDetails");
+    if(!statusEl || !detailsEl) return;
+
+    const { weekday, minutes } = getBrusselsNowParts();
+    const st = isOpen(weekday, minutes);
+
+    if(st.open){
+      statusEl.textContent = "Nu open";
+      detailsEl.textContent = st.lunch ? "Lunchservice (tot 14:30)" : "Avondservice (tot 22:00)";
+      statusEl.style.color = "#0a7a2f";
+    } else {
+      statusEl.textContent = "Nu gesloten";
+      statusEl.style.color = "#9a1b1b";
+
+      // kleine extra: toon vandaag nog openingsmoment als dat nog komt
+      const dinnerOpen = 19*60;
+      const lunchOpen = 12*60;
+
+      if((weekday === "Wed" || weekday === "Thu" || weekday === "Fri")){
+        if(minutes < lunchOpen) detailsEl.textContent = "Vandaag open van 12:00–14:30 en 19:00–22:00";
+        else if(minutes < (14*60+30)) detailsEl.textContent = "Vandaag open van 12:00–14:30 en 19:00–22:00";
+        else if(minutes < dinnerOpen) detailsEl.textContent = "Vandaag open van 19:00–22:00";
+        else detailsEl.textContent = "Vandaag gesloten";
+      } else if(weekday === "Sat"){
+        if(minutes < dinnerOpen) detailsEl.textContent = "Vandaag open van 19:00–22:00";
+        else detailsEl.textContent = "Vandaag gesloten";
+      } else {
+        detailsEl.textContent = "Vandaag gesloten";
+      }
+    }
+  }
+
+  setStatus();
+  setInterval(setStatus, 60 * 1000);
+</script>
+  
 </body>
 </html>
+
 
 
 
