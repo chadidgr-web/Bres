@@ -11,13 +11,16 @@
   <meta name="description" content="restaurant Bres te Antwerpen. Contact, openingsuren en locatie." />
   <meta name="theme-color" content="#0b0b0b" />
   <style>
-    /* Verberg site tot intro klaar is */
-html.intro-active main,
-html.intro-active header,
-html.intro-active footer {
-    opacity: 0;
-  pointer-events: none;
+   
+/* TEMP FIX: zorg dat de site altijd zichtbaar blijft */
+header, main, footer{
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 2;
 }
+
     :root{
   --bg:#ffffff;
   --card:#ffffff;
@@ -676,6 +679,7 @@ body{
   
 </body>
 </html>
+
 
 
 
