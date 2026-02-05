@@ -679,26 +679,11 @@ body{
       detailsEl.textContent = st.lunch ? "Lunchservice (tot 14:30)" : "Avondservice (tot 22:00)";
       statusEl.style.color = "#0a7a2f";
     } else {
-      statusEl.textContent = "Nu gesloten";
-      statusEl.style.color = "#9a1b1b";
+  statusEl.textContent = "Nu gesloten";
+  statusEl.style.color = "#9a1b1b";
+  detailsEl.textContent = "";
+}
 
-      // kleine extra: toon vandaag nog openingsmoment als dat nog komt
-      const dinnerOpen = 19*60;
-      const lunchOpen = 12*60;
-
-      if((weekday === "Wed" || weekday === "Thu" || weekday === "Fri")){
-        if(minutes < lunchOpen) detailsEl.textContent = "Vandaag open van 12:00–14:30 en 19:00–22:00";
-        else if(minutes < (14*60+30)) detailsEl.textContent = "Vandaag open van 12:00–14:30 en 19:00–22:00";
-        else if(minutes < dinnerOpen) detailsEl.textContent = "Vandaag open van 19:00–22:00";
-        else detailsEl.textContent = "Vandaag gesloten";
-      } else if(weekday === "Sat"){
-        if(minutes < dinnerOpen) detailsEl.textContent = "Vandaag open van 19:00–22:00";
-        else detailsEl.textContent = "Vandaag gesloten";
-      } else {
-        detailsEl.textContent = "Vandaag gesloten";
-      }
-    }
-  }
 
   setStatus();
   setInterval(setStatus, 60 * 1000);
@@ -706,6 +691,7 @@ body{
   
 </body>
 </html>
+
 
 
 
