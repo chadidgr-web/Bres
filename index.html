@@ -3,7 +3,10 @@
 <head>
   <link rel="icon" href="images/logo.svg" type="image/svg+xml">
   <meta charset="utf-8" />
- 
+ <script>
+  document.documentElement.classList.add("intro-active");
+</script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>restaurant Bres</title>
   <meta name="description" content="restaurant Bres te Antwerpen. Contact, openingsuren en locatie." />
@@ -188,7 +191,28 @@ h1, .page-title{
 #intro.hide{
   transform: translateY(-100%);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+}
+
+.intro-bg{
+  position:absolute;
+  inset:0;
+  background-image:url("images/intro.svg"); /* pas aan als je andere naam hebt */
+  background-size:cover;
+  background-position:center;
+  transform:scale(1.01);
+}
+
+.intro-overlay{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at center,
+    rgba(255,255,255,0.75),
+    rgba(255,255,255,0.95)
+  );
+}
+
 }
 .intro-logo-img{
   transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s ease;
@@ -683,10 +707,25 @@ html:not(.intro-active) header{
   setOpenStatus();
   setInterval(setOpenStatus, 60 * 1000);
 </script>
+<script>
+  window.addEventListener("load", () => {
+    const intro = document.getElementById("intro");
+    if(!intro){
+      document.documentElement.classList.remove("intro-active");
+      return;
+    }
+
+    setTimeout(() => {
+      intro.classList.add("hide");
+      document.documentElement.classList.remove("intro-active");
+    }, 1600);
+  });
+</script>
 
   
 </body>
 </html>
+
 
 
 
