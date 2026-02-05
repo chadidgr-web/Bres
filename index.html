@@ -654,6 +654,23 @@ main{
   padding: 8px 12px !important;
   font-size: 0.8rem !important;
 }
+/* Contact kleiner + verder weg */
+.stack > div:nth-child(2){
+  margin-top: 160px !important;
+  font-size: 0.8rem !important;
+  opacity: 0.9;
+}
+
+/* Contact titel kleiner */
+.stack > div:nth-child(2) .page-title{
+  font-size: 20px !important;
+}
+
+/* Contact knoppen compacter */
+.stack > div:nth-child(2) .btn{
+  padding: 8px 12px !important;
+  font-size: 0.8rem !important;
+}
 
 
   </style>
@@ -684,11 +701,11 @@ main{
   <section class="container center">
     <div class="stack">
 
+      <!-- Openingsuren -->
       <div>
         <h1 class="page-title">Openingsuren</h1>
         <p id="openStatus" class="status">Status laden…</p>
-<p id="openDetails" class="status-sub"></p>
-        
+        <p id="openDetails" class="status-sub"></p>
 
         <div class="hours-text">
           <p><strong>Geopend van woensdag tot zaterdag</strong></p>
@@ -701,21 +718,24 @@ main{
           <p>
             <strong>Avond:</strong> woensdag t.e.m. zaterdag<br>
             19:00 – 22:00
-        
           </p>
-          <div class="divider"></div>
+        </div>
 
+        <div class="divider"></div>
+      </div>
 
+      <!-- Contact -->
       <div>
         <h1 class="page-title">Contact</h1>
+
         <div class="actions center-actions">
-  <a class="btn" href="tel:+3233229791">Bel</a>
-  <a class="btn" href="mailto:info@restaurantbres.be">Mail</a>
-  <a class="btn" target="_blank" rel="noopener"
-     href="https://www.google.com/maps?q=Bresstraat%2010%2C%20Antwerpen">
-     Route
-  </a>
-</div>
+          <a class="btn" href="tel:+3233229791">Bel</a>
+          <a class="btn" href="mailto:info@restaurantbres.be">Mail</a>
+          <a class="btn" target="_blank" rel="noopener"
+             href="https://www.google.com/maps?q=Bresstraat%2010%2C%20Antwerpen">
+             Route
+          </a>
+        </div>
 
         <div class="contact-text">
           <p>Bresstraat 10, Antwerpen</p>
@@ -723,11 +743,11 @@ main{
           <p><a href="tel:+32465093915">+32 465 09 39 15</a></p>
         </div>
       </div>
-        
 
     </div>
   </section>
 </main>
+
 
 
 
@@ -897,6 +917,7 @@ const intro = intros[0];
   
 </body>
 </html>
+
 
 
 
