@@ -29,12 +29,7 @@ html.intro-active footer {
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-    :root{
-  --font-body: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
-
-body{
-  font-family: var(--font-body);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
     }
@@ -454,6 +449,40 @@ body{
   background-size: 220px auto;  /* grootte van de bakstenen */
   background-color: #ffffff;    /* wit eronder */
 }
+.container.center{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 18px 72px;
+  text-align: center;
+}
+
+.stack{
+  display: grid;
+  gap: 34px;
+}
+
+.hours-text{
+  line-height: 1.7;
+  color: #111;
+}
+
+.hours-text p{
+  margin: 10px 0;
+}
+
+.contact-text{
+  line-height: 1.7;
+}
+
+.contact-text a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-text a:hover{
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -485,34 +514,41 @@ body{
 <main id="top">
   <section class="container center">
     <div class="stack">
-      <div class="block">
+
+      <div>
         <h1 class="page-title">Openingsuren</h1>
-        <div class="hours center-hours">
-          <div class="row"><div>Ma</div><div>Gesloten</div></div>
-          <div class="row"><div>Di</div><div>12:00–14:30 · 18:00–22:00</div></div>
-          <div class="row"><div>Wo</div><div>12:00–14:30 · 18:00–22:00</div></div>
-          <div class="row"><div>Do</div><div>12:00–14:30 · 18:00–22:00</div></div>
-          <div class="row"><div>Vr</div><div>12:00–14:30 · 18:00–23:00</div></div>
-          <div class="row"><div>Za</div><div>18:00–23:00</div></div>
-          <div class="row"><div>Zo</div><div>12:00–14:30 · 18:00–22:00</div></div>
+
+        <div class="hours-text">
+          <p><strong>Geopend van woensdag tot zaterdag.</strong></p>
+
+          <p>
+            <strong>Avond:</strong> woensdag t.e.m. zaterdag<br>
+            19:00 – 22:00
+          </p>
+
+          <p>
+            <strong>Lunch:</strong> woensdag t.e.m. vrijdag<br>
+            12:00 – 14:30
+          </p>
+
+          <p><em>Lunch elke dag behalve zaterdag.</em></p>
         </div>
       </div>
 
-      <div class="block">
+      <div>
         <h1 class="page-title">Contact</h1>
-        <div class="kv center-kv">
-          <div>Telefoon</div><div><a href="tel:+32XXXXXXXXX">+32 …</a></div>
-          <div>E-mail</div><div><a href="mailto:info@restaurantbres.be">info@restaurantbres.be</a></div>
-          <div>Adres</div><div>Straat + nr, 2000 Antwerpen</div>
-        </div>
 
-        <div class="actions center-actions">
-          <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps">Open in Google Maps</a>
+        <div class="contact-text">
+          <p>Bresstraat 10, Antwerpen</p>
+          <p><a href="mailto:info@restaurantbres.be">info@restaurantbres.be</a></p>
+          <p><a href="tel:+3233229791">+32 3 322 97 91</a></p>
         </div>
       </div>
+
     </div>
   </section>
 </main>
+
 
 
   <footer>
@@ -569,6 +605,7 @@ body{
 </script>
 </body>
 </html>
+
 
 
 
