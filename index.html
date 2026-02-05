@@ -571,8 +571,10 @@ html:not(.intro-active) header{
 #intro.hide{
   transform: translateY(-100%);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
+
 
 
   </style>
@@ -598,7 +600,6 @@ html:not(.intro-active) header{
 
 
   <!-- INTRO OVERLAY -->
-<div id="intro">
   <div class="intro-bg"></div>
   <div class="intro-overlay"></div>
  <div class="intro-logo"></div>
@@ -750,7 +751,9 @@ html:not(.intro-active) header{
   // Zet intro-active zo vroeg mogelijk (dit mag ook al in head staan)
 
   window.addEventListener("load", () => {
-    const intro = document.getElementById("intro");
+    const intros = document.querySelectorAll("#intro");
+const intro = intros[0];
+
     const introLogo = document.getElementById("introLogo");
     const headerLogo = document.getElementById("headerLogo");
 
@@ -758,6 +761,8 @@ html:not(.intro-active) header{
       // Fallback: toon gewoon de pagina
       document.documentElement.classList.remove("intro-active");
       if (intro) intro.classList.add("hide");
+      intros.forEach(el => el.classList.add("hide"));
+
       return;
     }
 
@@ -810,12 +815,12 @@ html:not(.intro-active) header{
         flying.style.opacity = "1";
 
         // 5) Na animatie: toon het echte header-logo, verwijder de kopie
-        setTimeout(() => {
-          headerLogo.style.opacity = "1";
-          flying.remove();
-          // Optioneel: intro volledig uit de flow “weg”
-          // (niet nodig, maar kan)
-        }, 950);
+       setTimeout(() => {
+  headerLogo.style.opacity = "1";
+  flying.remove();
+  intro.style.display = "none";
+}, 950);
+
       });
     }, 1200); // hoe lang intro eerst blijft staan (ms)
   });
@@ -824,6 +829,7 @@ html:not(.intro-active) header{
   
 </body>
 </html>
+
 
 
 
