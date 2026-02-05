@@ -556,6 +556,23 @@ html:not(.intro-active) header{
   opacity: 1;
   transform: translateY(0);
 }
+    /* Intro altijd bovenaan en weg wanneer .hide */
+#intro{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.3s ease;
+}
+
+#intro.hide{
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -818,10 +835,25 @@ html:not(.intro-active) header{
   });
 </script>
 
+<script>
+  // meteen verbergen van content onder intro (optioneel)
+  document.documentElement.classList.add("intro-active");
+
+  window.addEventListener("load", () => {
+    const intro = document.getElementById("intro");
+    if (!intro) return;
+
+    setTimeout(() => {
+      intro.classList.add("hide");
+      document.documentElement.classList.remove("intro-active");
+    }, 1600);
+  });
+</script>
 
   
 </body>
 </html>
+
 
 
 
