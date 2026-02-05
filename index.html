@@ -139,8 +139,8 @@ html.intro-active footer{
     }
     @media (max-width: 600px){
   .container.center{
-    padding-top: 42px;
-    padding-bottom: 64px;
+    padding-top: 72px;
+    padding-bottom: 96px;
   }
   .stack{ gap: 56px; }
   .page-title{ font-size: 28px; }
@@ -176,36 +176,28 @@ h1, .page-title{
   letter-spacing: 0.08em;
 }
 
-    /* INTRO OVERLAY */
 #intro{
-  position:fixed;
-  inset:0;
-  z-index:9999;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  transform: translateY(0);
   opacity: 1;
-  visibility: visible;
-  transition: opacity 0.8s ease, visibility 0s linear 0.8s;
-  overflow:hidden;
+  transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s ease;
 }
 
-.intro-bg{
-  position:absolute;
-  inset:0;
-  background-image:url("images/intro.svg");
-  background-size:cover;
-  background-position:center;
-  transform:scale(1.01);
+#intro.hide{
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.intro-logo-img{
+  transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s ease;
 }
 
-.intro-overlay{
-  position:absolute;
-  inset:0;
-  background:radial-gradient(
-    circle at center,
-    rgba(255,255,255,0.75),
-    rgba(255,255,255,0.95)
-  );
+#intro.hide .intro-logo-img{
+  transform: scale(0.6) translateY(-40px);
+  opacity: 0;
 }
-
 
 .intro-logo{
   position:absolute;
@@ -392,7 +384,7 @@ header, main, footer {
 
 .stack{
   display: grid;
-  gap: 72px;
+  gap: 96px;
 }
 .divider{
   width: 140px;
@@ -496,6 +488,21 @@ body{
 .contact-text a:hover{
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+header{
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+html.intro-active header{
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+html:not(.intro-active) header{
+  opacity: 1;
+  transform: translateY(0);
 }
 
   </style>
@@ -604,25 +611,24 @@ body{
     }
   </script>
 <script>
-  // Zet intro mode aan zodra HTML begint te laden (voorkomt flash)
+  // Zet intro-active zo vroeg mogelijk (tegen flash)
   document.documentElement.classList.add("intro-active");
 
   window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
-
-    // Als intro ontbreekt, toon site meteen
-    if (!intro) {
+    if(!intro){
       document.documentElement.classList.remove("intro-active");
       return;
     }
 
-    // Na 2s: intro weg + site tonen
+    // Start overgang na 1.6s (pas aan naar smaak)
     setTimeout(() => {
       intro.classList.add("hide");
       document.documentElement.classList.remove("intro-active");
-    }, 2000);
+    }, 1600);
   });
 </script>
+
 
 <script>
   function getBrusselsNow(){
@@ -681,6 +687,7 @@ body{
   
 </body>
 </html>
+
 
 
 
