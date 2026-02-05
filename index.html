@@ -564,13 +564,20 @@ html:not(.intro-active) header{
 </head>
 
 <body>
+  <div id="intro">
+  <div class="intro-bg"></div>
+  <div class="intro-overlay"></div>
+
+  <div class="intro-logo">
+    <img src="images/logo.svg" alt="Bres" class="intro-logo-img" id="introLogo">
+  </div>
+</div>
+
   <div style="position:fixed;bottom:10px;right:10px;background:#fff;color:#000;padding:8px 10px;border-radius:10px;z-index:99999;font:14px system-ui;">
   TEST UPDATE
 </div>
   
-<div class="intro-logo">
-  <img src="images/logo.svg" alt="Bres" class="intro-logo-img" id="introLogo">
-</div>
+
 
   <!-- INTRO OVERLAY -->
 <div id="intro">
@@ -582,7 +589,7 @@ html:not(.intro-active) header{
 <header>
   <nav class="nav-center">
     <a class="brand" href="#">
-      <img src="images/logo.png" alt="Bres logo" class="nav-logo"> id="headerLogo">
+      <img src="images/logo.svg" alt="Bres" class="nav-logo" id="headerLogo">
     </a>
   </nav>
 </header>
@@ -815,6 +822,7 @@ html:not(.intro-active) header{
   
 </body>
 </html>
+
 
 
 
