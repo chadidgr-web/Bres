@@ -429,6 +429,28 @@ header, main, footer {
 .center-actions{
   justify-content: center;
 }
+/* Subtiele baksteen-achtergrond (CSS only) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(transparent 94%, rgba(0,0,0,.08) 0),
+    linear-gradient(90deg, transparent 94%, rgba(0,0,0,.08) 0);
+  background-size: 56px 28px;  /* baksteen formaat */
+  opacity: .18;               /* subtiel effect */
+  z-index: 0;
+}
+header, main, footer{
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 600px){
+  body::before{
+    opacity: .10; /* nog subtieler op mobiel */
+  }
+}
 
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -545,6 +567,7 @@ header, main, footer {
 </script>
 </body>
 </html>
+
 
 
 
