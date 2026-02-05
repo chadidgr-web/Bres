@@ -585,6 +585,23 @@ html:not(.intro-active) header{
 .stack > div:nth-of-type(2) .page-title{
   font-size: 20px !important;
 }
+/* Contact (titel + knoppen) kleiner en verder naar beneden */
+.stack > div:has(> h1.page-title:contains("Contact")){
+  font-size: 0.8rem;
+  margin-top: 140px;   /* veel ruimte t.o.v. Openingsuren */
+  opacity: 0.9;
+}
+
+/* Contact titel kleiner */
+.stack > div:has(> h1.page-title:contains("Contact")) .page-title{
+  font-size: 20px;
+}
+
+/* Knoppen compacter */
+.stack > div:has(> h1.page-title:contains("Contact")) .btn{
+  padding: 8px 12px;
+  font-size: 0.8rem;
+}
 
 
   </style>
@@ -828,6 +845,7 @@ const intro = intros[0];
   
 </body>
 </html>
+
 
 
 
