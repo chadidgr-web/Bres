@@ -620,77 +620,62 @@ body{
   });
 </script>
 <script>
-  window.addEventListener("load", () => {
-    const intro = document.getElementById("intro");
-    if (!intro) return;
-
-    setTimeout(() => {
-      intro.classList.add("hide");
-      document.documentElement.classList.remove("intro-active");
-    }, 2000);
-  });
-</script>
-      <script>
-  // Openingstijden Bres (Antwerpen) — Europe/Brussels
-  // Avond: wo-za 19:00–22:00
-  // Lunch: wo-vr 12:00–14:30
-  function getBrusselsNowParts(){
-    const dtf = new Intl.DateTimeFormat("en-GB", {
+  function getBrusselsNow(){
+    const now = new Date();
+    const fmt = new Intl.DateTimeFormat("en-GB", {
       timeZone: "Europe/Brussels",
       weekday: "short",
       hour: "2-digit",
       minute: "2-digit",
       hour12: false
     });
-    const parts = dtf.formatToParts(new Date());
-    const map = Object.fromEntries(parts.map(p => [p.type, p.value]));
+    const parts = Object.fromEntries(fmt.formatToParts(now).map(p => [p.type, p.value]));
     return {
-      weekday: map.weekday,                 // Mon, Tue, Wed...
-      minutes: parseInt(map.hour,10)*60 + parseInt(map.minute,10)
+      day: parts.weekday, // Mon Tue Wed Thu Fri Sat Sun
+      minutes: parseInt(parts.hour, 10) * 60 + parseInt(parts.minute, 10)
     };
   }
 
-  function isOpen(weekday, minutes){
-    const day = weekday; // Mon Tue Wed Thu Fri Sat Sun (en-GB short)
-    const inLunchDays = (day === "Wed" || day === "Thu" || day === "Fri");
-    const inDinnerDays = (day === "Wed" || day === "Thu" || day === "Fri" || day === "Sat");
+  function isBresOpen(){
+    const { day, minutes } = getBrusselsNow();
+
+    const lunchDays = ["Wed","Thu","Fri"];
+    const dinnerDays = ["Wed","Thu","Fri","Sat"];
 
     const lunchOpen = 12*60;       // 12:00
     const lunchClose = 14*60 + 30; // 14:30
     const dinnerOpen = 19*60;      // 19:00
     const dinnerClose = 22*60;     // 22:00
 
-    const lunch = inLunchDays && minutes >= lunchOpen && minutes < lunchClose;
-    const dinner = inDinnerDays && minutes >= dinnerOpen && minutes < dinnerClose;
+    const lunch = lunchDays.includes(day) && minutes >= lunchOpen && minutes < lunchClose;
+    const dinner = dinnerDays.includes(day) && minutes >= dinnerOpen && minutes < dinnerClose;
 
-    return { lunch, dinner, open: lunch || dinner };
+    return lunch || dinner;
   }
 
-  function setStatus(){
-    const statusEl = document.getElementById("openStatus");
-    const detailsEl = document.getElementById("openDetails");
-    if(!statusEl || !detailsEl) return;
+  function setOpenStatus(){
+    const el = document.getElementById("openStatus");
+    const details = document.getElementById("openDetails");
+    if(!el) return;
 
-    const { weekday, minutes } = getBrusselsNowParts();
-    const st = isOpen(weekday, minutes);
-
-    if(st.open){
-      statusEl.textContent = "Nu open";
-      detailsEl.textContent = st.lunch ? "Lunchservice (tot 14:30)" : "Avondservice (tot 22:00)";
-      statusEl.style.color = "#0a7a2f";
+    if(isBresOpen()){
+      el.textContent = "Nu open";
+      el.style.color = "#0a7a2f";
     } else {
-  statusEl.textContent = "Nu gesloten";
-  statusEl.style.color = "#9a1b1b";
-  detailsEl.textContent = "";
-}
+      el.textContent = "Nu gesloten";
+      el.style.color = "#9a1b1b";
+    }
 
+    if(details) details.textContent = "";
+  }
 
-  setStatus();
-  setInterval(setStatus, 60 * 1000);
+  setOpenStatus();
+  setInterval(setOpenStatus, 60 * 1000);
 </script>
   
 </body>
 </html>
+
 
 
 
