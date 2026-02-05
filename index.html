@@ -185,17 +185,38 @@ h1, .page-title{
   z-index: 9999;
   transform: translateY(0);
   opacity: 1;
-  transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.4s ease;
+  transition: transform 0.9s cubic-bezier(.2,.7,.2,1);
 }
 
 #intro.hide{
   transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
+}
+
+/* Intro logo in het midden */
+.intro-logo{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  z-index:2;
+}
+
+.intro-logo-img{
+  width:min(320px, 60vw);   /* pas aan */
+  height:auto;
+  display:block;
 }
 header, main, footer{
   transition: opacity 0.5s ease;
 }
+html.intro-active header{
+  opacity: 0;
+}
+
+header{
+  transition: opacity 0.4s ease;
+  opacity: 1;
+}  
 
 html.intro-active main,
 html.intro-active footer{
@@ -546,6 +567,10 @@ html:not(.intro-active) header{
   <div style="position:fixed;bottom:10px;right:10px;background:#fff;color:#000;padding:8px 10px;border-radius:10px;z-index:99999;font:14px system-ui;">
   TEST UPDATE
 </div>
+  
+<div class="intro-logo">
+  <img src="images/logo.svg" alt="Bres" class="intro-logo-img" id="introLogo">
+</div>
 
   <!-- INTRO OVERLAY -->
 <div id="intro">
@@ -557,7 +582,7 @@ html:not(.intro-active) header{
 <header>
   <nav class="nav-center">
     <a class="brand" href="#">
-      <img src="images/logo.png" alt="Bres logo" class="nav-logo">
+      <img src="images/logo.png" alt="Bres logo" class="nav-logo"> id="headerLogo">
     </a>
   </nav>
 </header>
@@ -641,25 +666,6 @@ html:not(.intro-active) header{
       return false;
     }
   </script>
-<script>
-  // Zet intro-active zo vroeg mogelijk (tegen flash)
-  document.documentElement.classList.add("intro-active");
-
-  window.addEventListener("load", () => {
-    const intro = document.getElementById("intro");
-    if(!intro){
-      document.documentElement.classList.remove("intro-active");
-      return;
-    }
-
-    // Start overgang na 1.6s (pas aan naar smaak)
-    setTimeout(() => {
-      intro.classList.add("hide");
-      document.documentElement.classList.remove("intro-active");
-    }, 1600);
-  });
-</script>
-
 
 <script>
   function getBrusselsNow(){
@@ -729,11 +735,87 @@ html:not(.intro-active) header{
     }, 1600);
   });
 </script>
+<script>
+  // Zet intro-active zo vroeg mogelijk (dit mag ook al in head staan)
+  document.documentElement.classList.add("intro-active");
+
+  window.addEventListener("load", () => {
+    const intro = document.getElementById("intro");
+    const introLogo = document.getElementById("introLogo");
+    const headerLogo = document.getElementById("headerLogo");
+
+    if (!intro || !introLogo || !headerLogo) {
+      // Fallback: toon gewoon de pagina
+      document.documentElement.classList.remove("intro-active");
+      if (intro) intro.classList.add("hide");
+      return;
+    }
+
+    // Wacht even zodat intro zichtbaar is
+    setTimeout(() => {
+      // 1) Meet posities (begin = intro logo, einde = header logo)
+      const from = introLogo.getBoundingClientRect();
+
+      // Zorg dat header al "bestaat" in layout (maar nog onzichtbaar)
+      // (opacity 0 door intro-active)
+      const to = headerLogo.getBoundingClientRect();
+
+      // 2) Maak een "vliegende" kopie van het logo
+      const flying = introLogo.cloneNode(true);
+      flying.removeAttribute("id");
+      flying.style.position = "fixed";
+      flying.style.left = from.left + "px";
+      flying.style.top = from.top + "px";
+      flying.style.width = from.width + "px";
+      flying.style.height = from.height + "px";
+      flying.style.margin = "0";
+      flying.style.zIndex = "10000";
+      flying.style.transformOrigin = "top left";
+      flying.style.pointerEvents = "none";
+
+      document.body.appendChild(flying);
+
+      // 3) Verberg het echte intro-logo zodat je maar één logo ziet bewegen
+      introLogo.style.opacity = "0";
+
+      // 4) Start intro slide-up + tegelijk logo verplaatsen
+      requestAnimationFrame(() => {
+        // Intro schuift omhoog
+        intro.classList.add("hide");
+
+        // Toon header (door intro-active weg te halen) MAAR header-logo nog even transparant
+        headerLogo.style.opacity = "0";
+        document.documentElement.classList.remove("intro-active");
+
+        // Meet opnieuw (header kan mini verschuiven na opacity change)
+        const to2 = headerLogo.getBoundingClientRect();
+
+        const dx = to2.left - from.left;
+        const dy = to2.top - from.top;
+        const sx = to2.width / from.width;
+        const sy = to2.height / from.height;
+
+        flying.style.transition = "transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.2s ease 0.7s";
+        flying.style.transform = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+        flying.style.opacity = "1";
+
+        // 5) Na animatie: toon het echte header-logo, verwijder de kopie
+        setTimeout(() => {
+          headerLogo.style.opacity = "1";
+          flying.remove();
+          // Optioneel: intro volledig uit de flow “weg”
+          // (niet nodig, maar kan)
+        }, 950);
+      });
+    }, 1200); // hoe lang intro eerst blijft staan (ms)
+  });
+</script>
 
 
   
 </body>
 </html>
+
 
 
 
