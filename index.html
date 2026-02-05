@@ -563,6 +563,17 @@ html:not(.intro-active) header{
   pointer-events: none;
 }
 
+/* Alleen de 2e sectie (Contact) kleiner en iets lager */
+.stack > div:nth-of-type(2){
+  font-size: 0.9rem;     /* kleiner */
+  margin-top: 48px;     /* verder naar beneden */
+  opacity: 0.95;
+}
+
+/* Contact-titel iets kleiner dan Openingsuren */
+.stack > div:nth-of-type(2) .page-title{
+  font-size: 22px;
+}
 
 
   </style>
@@ -810,6 +821,7 @@ const intro = intros[0];
   
 </body>
 </html>
+
 
 
 
