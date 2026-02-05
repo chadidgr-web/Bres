@@ -3,24 +3,19 @@
 <head>
   <link rel="icon" href="images/logo.svg" type="image/svg+xml">
   <meta charset="utf-8" />
-  <script>
-  document.documentElement.classList.add("intro-active");
-</script>
+ 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>restaurant Bres</title>
   <meta name="description" content="restaurant Bres te Antwerpen. Contact, openingsuren en locatie." />
   <meta name="theme-color" content="#0b0b0b" />
   <style>
    
-/* TEMP FIX: zorg dat de site altijd zichtbaar blijft */
-header, main, footer{
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  position: relative;
-  z-index: 2;
+html.intro-active header,
+html.intro-active main,
+html.intro-active footer{
+  opacity: 0;
+  pointer-events: none;
 }
-
     :root{
   --bg:#ffffff;
   --card:#ffffff;
@@ -609,19 +604,26 @@ body{
     }
   </script>
 <script>
+  // Zet intro mode aan zodra HTML begint te laden (voorkomt flash)
+  document.documentElement.classList.add("intro-active");
+
   window.addEventListener("load", () => {
     const intro = document.getElementById("intro");
-    if (!intro) return;
 
-    // header pas tonen na intro (zoals jij wilde)
-    document.body.classList.add("intro-active");
+    // Als intro ontbreekt, toon site meteen
+    if (!intro) {
+      document.documentElement.classList.remove("intro-active");
+      return;
+    }
 
+    // Na 2s: intro weg + site tonen
     setTimeout(() => {
       intro.classList.add("hide");
-      document.body.classList.remove("intro-active");
+      document.documentElement.classList.remove("intro-active");
     }, 2000);
   });
 </script>
+
 <script>
   function getBrusselsNow(){
     const now = new Date();
@@ -679,6 +681,7 @@ body{
   
 </body>
 </html>
+
 
 
 
