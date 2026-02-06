@@ -835,22 +835,16 @@ footer{
     };
   }
 
-  function isBresOpen(){
-    const { day, minutes } = getBrusselsNow();
+function isBresOpen(){
+  const { day, minutes } = getBrusselsNow();
 
-    const lunchDays = ["Wed","Thu","Fri"];
-    const dinnerDays = ["Wed","Thu","Fri","Sat"];
+  const dinnerDays = ["Wed","Thu","Fri","Sat"];
+  const dinnerOpen = 19*60;      // 19:00
+  const dinnerClose = 22*60;     // 22:00
 
-    const lunchOpen = 12*60;       // 12:00
-    const lunchClose = 14*60 + 30; // 14:30
-    const dinnerOpen = 19*60;      // 19:00
-    const dinnerClose = 22*60;     // 22:00
-
-    const lunch = lunchDays.includes(day) && minutes >= lunchOpen && minutes < lunchClose;
-    const dinner = dinnerDays.includes(day) && minutes >= dinnerOpen && minutes < dinnerClose;
-
-    return lunch || dinner;
-  }
+  const dinner = dinnerDays.includes(day) && minutes >= dinnerOpen && minutes < dinnerClose;
+  return dinner;  // alleen avond telt als "open"
+}
 
   function setOpenStatus(){
     const el = document.getElementById("openStatus");
@@ -956,6 +950,7 @@ const intro = intros[0];
   
 </body>
 </html>
+
 
 
 
