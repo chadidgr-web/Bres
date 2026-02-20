@@ -753,22 +753,11 @@ footer{
 
         <div class="hours-text">
           <p><strong>Geopend van woensdag tot zaterdag</strong></p>
-
-          <p>
-            <strong>Avond:</strong> woensdag t.e.m. zaterdag<br>
-            19:00 – 22:00
-          </p>
-           lunch optie site bres
-
- <p>
+  <p>
             <strong>Lunch:</strong> woensdag t.e.m. vrijdag<br>
-            12:00 – 14:30
+           12:00 – 14:30
           </p>
-
-  <div class="hours-text">
-          <p><strong>Geopend van woensdag tot zaterdag</strong></p>
-
-<p>
+          <p>
             <strong>Avond:</strong> woensdag t.e.m. zaterdag<br>
             19:00 – 22:00
           </p>
@@ -853,12 +842,25 @@ footer{
 function isBresOpen(){
   const { day, minutes } = getBrusselsNow();
 
+  const lunchDays = ["Wed","Thu","Fri"];
   const dinnerDays = ["Wed","Thu","Fri","Sat"];
-  const dinnerOpen = 19*60;      // 19:00
-  const dinnerClose = 22*60;     // 22:00
 
-  const dinner = dinnerDays.includes(day) && minutes >= dinnerOpen && minutes < dinnerClose;
-  return dinner;  // alleen avond telt als "open"
+  const lunchOpen = 12*60;        // 12:00
+  const lunchClose = 14*60 + 30;  // 14:30
+  const dinnerOpen = 19*60;       // 19:00
+  const dinnerClose = 22*60;      // 22:00
+
+  const lunchOpenNow =
+    lunchDays.includes(day) &&
+    minutes >= lunchOpen &&
+    minutes < lunchClose;
+
+  const dinnerOpenNow =
+    dinnerDays.includes(day) &&
+    minutes >= dinnerOpen &&
+    minutes < dinnerClose;
+
+  return lunchOpenNow || dinnerOpenNow;
 }
 
   function setOpenStatus(){
@@ -965,6 +967,7 @@ const intro = intros[0];
   
 </body>
 </html>
+
 
 
 
