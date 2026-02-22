@@ -28,13 +28,10 @@ html.intro-active footer{
   --muted:#666666;
   --line:rgba(0,0,0,.12);
 }
-
-    }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
 body{
   font-family: "CopperplateWeb", "Copperplate", "Copperplate Gothic Light", serif;
-}
 
     }
 /* Header met gecentreerd logo */
@@ -886,37 +883,31 @@ function isBresOpen(){
 
   setOpenStatus();
   setInterval(setOpenStatus, 60 * 1000);
-</script>
-
-<script>
-  // Zet intro-active zo vroeg mogelijk (dit mag ook al in head staan)
-
+</script>  
+  <script>
+  // Intro blijft staan tot scroll of swipe
   window.addEventListener("load", () => {
-    const intros = document.querySelectorAll("#intro");
-const intro = intros[0];
-
+    const intro = document.getElementById("intro");
     const introLogo = document.getElementById("introLogo");
     const headerLogo = document.getElementById("headerLogo");
 
     if (!intro || !introLogo || !headerLogo) {
-      // Fallback: toon gewoon de pagina
       document.documentElement.classList.remove("intro-active");
-      if (intro) intro.classList.add("hide");
-      intros.forEach(el => el.classList.add("hide"));
-
+      document.body.classList.remove("intro-active");
+      if (intro) intro.remove();
       return;
     }
 
-    // Wacht even zodat intro zichtbaar is
-    setTimeout(() => {
-      // 1) Meet posities (begin = intro logo, einde = header logo)
+    document.body.classList.add("intro-active");
+
+    let dismissed = false;
+    let touchStartY = null;
+
+    function dismissIntro(){
+      if (dismissed) return;
+      dismissed = true;
+
       const from = introLogo.getBoundingClientRect();
-
-      // Zorg dat header al "bestaat" in layout (maar nog onzichtbaar)
-      // (opacity 0 door intro-active)
-      const to = headerLogo.getBoundingClientRect();
-
-      // 2) Maak een "vliegende" kopie van het logo
       const flying = introLogo.cloneNode(true);
       flying.removeAttribute("id");
       flying.style.position = "fixed";
@@ -928,50 +919,62 @@ const intro = intros[0];
       flying.style.zIndex = "10000";
       flying.style.transformOrigin = "top left";
       flying.style.pointerEvents = "none";
-
       document.body.appendChild(flying);
 
-      // 3) Verberg het echte intro-logo zodat je maar één logo ziet bewegen
       introLogo.style.opacity = "0";
 
-      // 4) Start intro slide-up + tegelijk logo verplaatsen
       requestAnimationFrame(() => {
-        // Intro schuift omhoog
         intro.classList.add("hide");
-
-        // Toon header (door intro-active weg te halen) MAAR header-logo nog even transparant
-        headerLogo.style.opacity = "0";
         document.documentElement.classList.remove("intro-active");
+        document.body.classList.remove("intro-active");
 
-        // Meet opnieuw (header kan mini verschuiven na opacity change)
-        const to2 = headerLogo.getBoundingClientRect();
+        const to = headerLogo.getBoundingClientRect();
+        const dx = to.left - from.left;
+        const dy = to.top - from.top;
+        const sx = to.width / from.width;
+        const sy = to.height / from.height;
 
-        const dx = to2.left - from.left;
-        const dy = to2.top - from.top;
-        const sx = to2.width / from.width;
-        const sy = to2.height / from.height;
-
-        flying.style.transition = "transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.2s ease 0.7s";
+        headerLogo.style.opacity = "0";
+        flying.style.transition =
+          "transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.2s ease 0.7s";
         flying.style.transform = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
-        flying.style.opacity = "1";
 
-        // 5) Na animatie: toon het echte header-logo, verwijder de kopie
-      setTimeout(() => {
-  headerLogo.style.opacity = "1";
-  flying.remove();
-
-  // INTRO DEFINITIEF WEG (zodat hij niet achter je tekst blijft)
-  intro.remove(); // of: intro.style.display = "none";
-}, 950);
-
+        setTimeout(() => {
+          headerLogo.style.opacity = "1";
+          flying.remove();
+          intro.remove();
+          cleanup();
+        }, 950);
       });
-    }, 1200); // hoe lang intro eerst blijft staan (ms)
+    }
+
+    function onWheel(e){ if (e.deltaY > 0) dismissIntro(); }
+    function onKeydown(e){
+      if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") dismissIntro();
+    }
+    function onTouchStart(e){ touchStartY = e.touches?.[0]?.clientY ?? null; }
+    function onTouchMove(e){
+      if (touchStartY == null) return;
+      const y = e.touches?.[0]?.clientY ?? null;
+      if (y == null) return;
+      if (touchStartY - y > 30) dismissIntro();
+    }
+    function cleanup(){
+      window.removeEventListener("wheel", onWheel, { passive: true });
+      window.removeEventListener("keydown", onKeydown);
+      window.removeEventListener("touchstart", onTouchStart, { passive: true });
+      window.removeEventListener("touchmove", onTouchMove, { passive: true });
+    }
+
+    window.addEventListener("wheel", onWheel, { passive: true });
+    window.addEventListener("keydown", onKeydown);
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
   });
 </script>
-
-  
 </body>
 </html>
+
 
 
 
