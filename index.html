@@ -14,14 +14,7 @@
 <meta name="description" content="Restaurant Bres te Antwerpen. Bekijk openingsuren en contactgegevens.">
   <meta name="theme-color" content="#0b0b0b" />
   <style>
-  @font-face{
-  font-family: "CopperplateWeb";
-  src: url("fonts/Copperplate.woff2") format("woff2"),
-       url("fonts/Copperplate.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+  
 html.intro-active header,
 html.intro-active main,
 html.intro-active footer{
@@ -179,14 +172,6 @@ body{
       justify-content:space-between;
       font-size:13px;
     }
-:root{
-  --font-body: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  --font-brush: "Permanent Marker", cursive;
-}
-
-body{
-  font-family: var(--font-body);
-}
 
 h1, .page-title{
   letter-spacing: 0.08em;
@@ -724,7 +709,19 @@ footer{
   border-top: 1px solid rgba(0,0,0,0.15);
   color: #666;
 }
+@font-face{
+  font-family: "CopperplateWeb";
+  src: url("fonts/Copperplate.woff2") format("woff2"),
+       url("fonts/Copperplate.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
+/* Forceer Copperplate op alles */
+html, body, button, input, textarea, a{
+  font-family: "CopperplateWeb", "Copperplate", "Copperplate Gothic Light", serif !important;
+}
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -975,6 +972,7 @@ const intro = intros[0];
   
 </body>
 </html>
+
 
 
 
