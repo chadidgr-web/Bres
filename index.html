@@ -14,7 +14,14 @@
 <meta name="description" content="Restaurant Bres te Antwerpen. Bekijk openingsuren en contactgegevens.">
   <meta name="theme-color" content="#0b0b0b" />
   <style>
-   
+  @font-face{
+  font-family: "CopperplateWeb";
+  src: url("fonts/Copperplate.woff2") format("woff2"),
+       url("fonts/Copperplate.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 html.intro-active header,
 html.intro-active main,
 html.intro-active footer{
@@ -33,7 +40,7 @@ html.intro-active footer{
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
 body{
-  font-family: "Copperplate", "Copperplate Gothic Light", "Cinzel", serif;
+  font-family: "CopperplateWeb", "Copperplate", "Copperplate Gothic Light", serif;
 }
 
     }
@@ -968,6 +975,7 @@ const intro = intros[0];
   
 </body>
 </html>
+
 
 
 
