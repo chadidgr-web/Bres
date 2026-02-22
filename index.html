@@ -776,22 +776,18 @@ html, body, button, input, textarea, a{
 }
 
 .scroll-hint .chevron{
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor;
   transform: rotate(45deg);
+  animation: hint-bounce 1.6s ease-in-out infinite;
 }
 
 .scroll-hint .hint-text{
   font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-}
-
-@keyframes hint-bounce{
-  0%, 100% { transform: translateY(0); opacity: .6; }
-  50%      { transform: translateY(6px); opacity: .9; }
 }
 
 /* Verberg hint zodra intro weggaat */
@@ -1064,6 +1060,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
