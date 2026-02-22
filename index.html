@@ -186,6 +186,43 @@ h1, .page-title{
   transform: translateX(-50%);
   pointer-events: none;
 }
+.scroll-hint{
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  color: #111;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.scroll-hint .chevron{
+  width: 14px;
+  height: 14px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  animation: hint-bounce 1.6s ease-in-out infinite;
+}
+
+.scroll-hint .hint-text{
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes hint-bounce{
+  0%, 100% { transform: translateY(0) rotate(45deg); opacity: .6; }
+  50%      { transform: translateY(6px) rotate(45deg); opacity: .9; }
+}
+
+/* Verberg hint zodra intro weggaat */
+#intro.hide .scroll-hint{
+  opacity: 0;
+}
 
 #intro.hide{
   transform: translateY(-100%);
@@ -783,6 +820,7 @@ html, body{
   
  <!-- Scroll hint -->
   <div class="scroll-hint">
+   <span class="chevron"></span>
     <span class="hint-text">Scroll</span>
   </div>
 </div>
@@ -1026,6 +1064,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
