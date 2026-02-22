@@ -719,6 +719,42 @@ footer{
 html, body, button, input, textarea, a{
   font-family: "CopperplateWeb", "Copperplate", "Copperplate Gothic Light", serif !important;
 }
+.scroll-hint{
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  color: #111;           /* past bij je witte intro */
+  opacity: 0.65;
+  pointer-events: none; /* hint is niet klikbaar */
+}
+
+.scroll-hint .chevron{
+  width: 14px;
+  height: 14px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.scroll-hint .hint-text{
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@keyframes hint-bounce{
+  0%, 100% { transform: translateY(0); opacity: .6; }
+  50%      { transform: translateY(6px); opacity: .9; }
+}
+
+/* Verberg hint zodra intro weggaat */
+#intro.hide .scroll-hint{
+  opacity: 0;
+}    
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -734,7 +770,13 @@ html, body, button, input, textarea, a{
     <img src="images/logo.png" alt="Bres" class="intro-logo-img" id="introLogo">
   </div>
 </div>
-
+  
+ <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <span class="hint-text">Scroll</span>
+  </div>
+</div>
+  
 <header>
   <nav class="nav-center">
     <a class="brand" href="#">
@@ -974,6 +1016,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
