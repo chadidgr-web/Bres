@@ -799,6 +799,14 @@ html, body{
   height: 100%;
   overflow: hidden;
 }    
+/* Scroll blokkeren op smartphone */
+@media (max-width: 768px){
+  html, body{
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none; /* voorkomt swipe-scroll op mobiel */
+  }
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1059,6 +1067,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
