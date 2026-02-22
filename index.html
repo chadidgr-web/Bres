@@ -179,7 +179,13 @@ h1, .page-title{
   inset: 0;
   z-index: 9999;
 }
-
+.scroll-hint{
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
 
 #intro.hide{
   transform: translateY(-100%);
@@ -774,7 +780,6 @@ html, body{
   <div class="intro-logo">
     <img src="images/logo.png" alt="Bres" class="intro-logo-img" id="introLogo">
   </div>
-</div>
   
  <!-- Scroll hint -->
   <div class="scroll-hint">
@@ -1021,6 +1026,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
