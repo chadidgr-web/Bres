@@ -213,6 +213,41 @@ footer .inner{
   padding: 9px 14px;
   font-size: 0.85rem;
 }
+    /* =========================
+   Meer ruimte + Contact kleiner
+   ========================= */
+
+/* Meer afstand tussen de twee blokken */
+.stack{
+  gap: 70px;   /* was ±44 — nu veel luchtiger */
+}
+
+/* Contact blok kleiner */
+.stack > div:nth-child(2){
+  font-size: 0.80rem;
+  opacity: 0.9;
+}
+
+/* Contact titel duidelijk kleiner dan Openingsuren */
+.stack > div:nth-child(2) .page-title{
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+/* Meer verticale rust in contact tekst */
+.stack > div:nth-child(2) .contact-text{
+  line-height: 1.95;
+}
+
+.stack > div:nth-child(2) .contact-text p{
+  margin: 12px 0;
+}
+
+/* Contact knoppen subtieler */
+.stack > div:nth-child(2) .btn{
+  padding: 8px 12px;
+  font-size: 0.8rem;
+}
 
 /* Mobile */
 @media (max-width:600px){
@@ -487,6 +522,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
