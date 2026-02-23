@@ -14,12 +14,7 @@
 <meta name="description" content="Restaurant Bres te Antwerpen. Bekijk openingsuren en contactgegevens.">
   <meta name="theme-color" content="#0b0b0b" />
 
-  </style>
-  
-/* =========================
-   Bres — CLEAN CSS 
-   ========================= */
-
+  <style>
 :root{
   --text:#111;
   --muted:#666;
@@ -28,14 +23,8 @@
 
 *{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
+html, body{ height:100%; overflow:hidden; }
 
-/* Geen scroll */
-html, body{
-  height:100%;
-  overflow:hidden;
-}
-
-/* Font */
 @font-face{
   font-family: "CopperplateWeb";
   src: url("fonts/Copperplate.woff2") format("woff2"),
@@ -44,160 +33,85 @@ html, body{
   font-style:normal;
   font-display:swap;
 }
-
 html, body, button, input, textarea, a{
   font-family:"CopperplateWeb","Copperplate","Copperplate Gothic Light",serif !important;
 }
 
-/* =========================
-   Achtergrond — bricks repeat
-   ========================= */
-
+/* Background repeat */
 html{
-  background: url("images/bricks.jpg") repeat;
-  background-size: 320px auto; /* pas aan indien nodig */
+  background: url("images/bricks.png") repeat;
+  background-size: 320px auto;
   background-color:#fff;
 }
-
 body{
   margin:0;
   background:transparent;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
+body::before{ content:none; }
 
-/* GEEN overlay */
-body::before{
-  content:none;
-}
-
-/* Alles boven achtergrond */
+/* Layering */
 header, main, footer{
   position:relative;
   z-index:1;
   transition:opacity .6s ease;
 }
+main{ flex:1; }
 
-/* =========================
-   Intro
-   ========================= */
-
-#intro{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-}
-
-.intro-bg{
-  position:absolute;
-  inset:0;
-  background:#fff;
-}
-
+/* Intro */
+#intro{ position:fixed; inset:0; z-index:9999; }
+.intro-bg{ position:absolute; inset:0; background:#fff; }
 .intro-overlay{
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at center,
-    rgba(255,255,255,0.75),
-    rgba(255,255,255,0.95)
-  );
+  position:absolute; inset:0;
+  background:radial-gradient(circle at center, rgba(255,255,255,.75), rgba(255,255,255,.95));
 }
-
-.intro-logo{
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  z-index:2;
-}
-
+.intro-logo{ position:absolute; inset:0; display:grid; place-items:center; z-index:2; }
 .intro-logo-img{
   width:min(320px,60vw);
   height:auto;
   transition:transform .9s cubic-bezier(.2,.7,.2,1), opacity .6s ease;
 }
+#intro.hide{ transform:translateY(-100%); opacity:0; visibility:hidden; pointer-events:none; }
+#intro.hide .intro-logo-img{ transform:scale(.6) translateY(-40px); opacity:0; }
 
-#intro.hide{
-  transform:translateY(-100%);
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-
-#intro.hide .intro-logo-img{
-  transform:scale(.6) translateY(-40px);
-  opacity:0;
-}
-
-/* Scroll hint */
 .scroll-hint{
-  position:absolute;
-  left:50%;
-  bottom:28px;
+  position:absolute; left:50%; bottom:28px;
   transform:translateX(-50%);
-  display:grid;
-  place-items:center;
-  color:#111;
-  opacity:.65;
-  pointer-events:none;
+  display:grid; place-items:center;
+  color:#111; opacity:.65; pointer-events:none;
 }
-
 .scroll-hint .chevron{
-  width:16px;
-  height:16px;
+  width:16px; height:16px;
   border-right:2px solid currentColor;
   border-bottom:2px solid currentColor;
   transform:rotate(45deg);
   animation:hint-bounce 1.6s ease-in-out infinite;
 }
-
 @keyframes hint-bounce{
   0%,100%{transform:translateY(0) rotate(45deg);opacity:.6;}
   50%{transform:translateY(6px) rotate(45deg);opacity:.9;}
 }
-
 #intro.hide .scroll-hint{ opacity:0; }
 
 html.intro-active header,
 html.intro-active main,
-html.intro-active footer{
-  opacity:0;
-  pointer-events:none;
-}
+html.intro-active footer{ opacity:0; pointer-events:none; }
 
-/* =========================
-   Header
-   ========================= */
+/* Header */
+.nav-center{ display:flex; justify-content:center; align-items:center; padding:14px 0; }
+.brand{ display:flex; align-items:center; justify-content:center; }
+.nav-logo{ height:56px; width:auto; display:block; }
 
-.nav-center{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:14px 0;
-}
-
-.nav-logo{
-  height:56px;
-  width:auto;
-}
-
-/* =========================
-   Layout
-   ========================= */
-
-main{
-  flex:1;
-}
-
+/* Content */
 .container.center{
   max-width:720px;
   margin:0 auto;
   padding:96px 18px 72px;
   text-align:center;
 }
-
-.stack{
-  display:grid;
-  gap:34px;
-}
+.stack{ display:grid; gap:34px; }
 
 .page-title{
   margin:0;
@@ -206,42 +120,22 @@ main{
   color:var(--text);
 }
 
-.status{
-  font-weight:600;
-  letter-spacing:.04em;
-  margin-top:8px;
-}
+.status{ font-weight:600; letter-spacing:.04em; margin-top:8px; }
+.status-sub{ font-size:.9rem; opacity:.7; }
 
-.status-sub{
-  font-size:.9rem;
-  opacity:.7;
-}
-
-.hours-text{
-  line-height:1.7;
-}
-
-.hours-text p{
-  margin:10px 0;
-}
+.hours-text{ line-height:1.7; color:var(--text); }
+.hours-text p{ margin:10px 0; }
 
 .divider{
-  width:140px;
-  height:1px;
+  width:140px; height:1px;
   margin:10px auto 0;
   background:var(--line);
 }
 
-/* Buttons */
-
 .actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-top:14px;
+  display:flex; gap:10px; flex-wrap:wrap;
+  justify-content:center; margin-top:14px;
 }
-
 .btn{
   display:inline-block;
   padding:10px 16px;
@@ -250,48 +144,24 @@ main{
   text-decoration:none;
   color:var(--text);
   background:#fff;
-  transition:all .2s ease;
+  transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-
 .btn:hover{
   transform:translateY(-1px);
   box-shadow:0 6px 16px rgba(0,0,0,.08);
+  border-color:rgba(0,0,0,.28);
 }
 
-/* Contact */
+.contact-text{ line-height:1.7; }
+.contact-text p{ margin:8px 0; }
+.contact-text a{ color:inherit; text-decoration:none; }
+.contact-text a:hover{ text-decoration:underline; text-underline-offset:3px; }
 
-.contact-text{
-  line-height:1.7;
-}
+/* Contact kleiner */
+.stack > div:nth-child(2){ font-size:.88rem; opacity:.92; }
+.stack > div:nth-child(2) .page-title{ font-size:24px; }
 
-.contact-text p{
-  margin:8px 0;
-}
-
-.contact-text a{
-  color:inherit;
-  text-decoration:none;
-}
-
-.contact-text a:hover{
-  text-decoration:underline;
-  text-underline-offset:3px;
-}
-
-/* Contact kleiner dan openingsuren */
-.stack > div:nth-child(2){
-  font-size:.88rem;
-  opacity:.92;
-}
-
-.stack > div:nth-child(2) .page-title{
-  font-size:24px;
-}
-
-/* =========================
-   Footer
-   ========================= */
-
+/* Footer */
 footer{
   border-top:none;
   margin-top:64px;
@@ -299,7 +169,6 @@ footer{
   font-size:12px;
   color:var(--muted);
 }
-
 footer .inner{
   max-width:720px;
   margin:0 auto;
@@ -310,24 +179,16 @@ footer .inner{
   justify-content:space-between;
 }
 
-/* =========================
-   Mobile
-   ========================= */
-
+/* Mobile */
 @media (max-width:600px){
-  .container.center{
-    padding:72px 16px 56px;
-  }
+  .container.center{ padding:72px 16px 56px; }
   .page-title{ font-size:28px; }
   .stack{ gap:24px; }
 }
-
 @media (max-width:768px){
-  html, body{
-    overscroll-behavior:none;
-    touch-action:none;
-  }
+  html, body{ overscroll-behavior:none; touch-action:none; }
 }
+    </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -587,6 +448,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
