@@ -851,6 +851,30 @@ html, body{
     opacity: 1 !important;
   }
 }
+  /* ✅ Mobile fix: body blijft "vast", maar inhoud kan scrollen (tekst verdwijnt nooit) */
+@media (max-width: 768px){
+  html, body{
+    height: 100%;
+    overflow: hidden;            /* body zelf niet scrollen */
+  }
+
+  main{
+    flex: 1;
+    overflow-y: auto;            /* ✅ inhoud mag scrollen */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* touch-action:none zorgt dat zelfs main soms niet goed scrollt */
+  body{
+    touch-action: auto !important;
+  }
+
+  /* safety: als er nog oude margin-top hacks staan, neutraliseer ze */
+  .stack > div:nth-child(2){
+    margin-top: 0 !important;
+  }
+}
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1111,6 +1135,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
