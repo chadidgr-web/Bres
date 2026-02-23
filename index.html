@@ -515,12 +515,10 @@ body::before{
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background:
-    linear-gradient(transparent 94%, rgba(0,0,0,.08) 0),
-    linear-gradient(90deg, transparent 94%, rgba(0,0,0,.08) 0);
-  background-size: 56px 28px;  /* baksteen formaat */
-  opacity: .18;               /* subtiel effect */
   z-index: 0;
+
+  /* subtiele contrastlaag */
+  background: rgba(255,255,255,0.82);
 }
 header, main, footer{
   position: relative;
@@ -1067,6 +1065,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
