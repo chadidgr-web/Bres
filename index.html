@@ -13,257 +13,82 @@
   <title>Restaurant Bres - Antwerpen</title>
 <meta name="description" content="Restaurant Bres te Antwerpen. Bekijk openingsuren en contactgegevens.">
   <meta name="theme-color" content="#0b0b0b" />
-  <style>
+
   
-html.intro-active header,
-html.intro-active main,
-html.intro-active footer{
-  opacity: 0;
-  pointer-events: none;
+/* =========================
+   Bres — CLEAN CSS (Bricks repeat versie)
+   ========================= */
+
+:root{
+  --text:#111;
+  --muted:#666;
+  --line:rgba(0,0,0,.18);
 }
-    :root{
-  --bg:#ffffff;
-  --card:#ffffff;
-  --text:#111111;
-  --muted:#666666;
-  --line:rgba(0,0,0,.12);
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+
+/* Geen scroll */
+html, body{
+  height:100%;
+  overflow:hidden;
 }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+
+/* Font */
+@font-face{
+  font-family: "CopperplateWeb";
+  src: url("fonts/Copperplate.woff2") format("woff2"),
+       url("fonts/Copperplate.woff") format("woff");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+html, body, button, input, textarea, a{
+  font-family:"CopperplateWeb","Copperplate","Copperplate Gothic Light",serif !important;
+}
+
+/* =========================
+   Achtergrond — bricks repeat
+   ========================= */
+
+html{
+  background: url("images/bricks.png") repeat;
+  background-size: 320px auto; /* pas aan indien nodig */
+  background-color:#fff;
+}
+
 body{
-  font-family: "CopperplateWeb", "Copperplate", "Copperplate Gothic Light", serif;
-
-    }
-/* Header met gecentreerd logo */
-.nav-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
+  margin:0;
+  background:transparent;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* GEEN overlay */
+body::before{
+  content:none;
 }
 
-/* Tijdelijk logo-blok */
-.mark {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.3);
-  display: grid;
-  place-items: center;
-  font-weight: 700;
+/* Alles boven achtergrond */
+header, main, footer{
+  position:relative;
+  z-index:1;
+  transition:opacity .6s ease;
 }
 
-    .links{display:flex; gap:14px; flex-wrap:wrap; align-items:center}
-    .links a{opacity:.92; text-decoration:none}
-    .links a:hover{opacity:1; text-decoration:underline}
-    .btn{
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.28);
-      text-decoration:none;
-    }
-    .btn.primary{
-      background:#fff; color:#0b0b0b; border-color:#fff;
-      font-weight:650;
-    }
-    .btn:hover{transform:translateY(-1px)}
-    main{max-width:var(--max); margin:0 auto; padding:0 var(--pad) 56px}
-    .hero{
-      padding:38px 0 18px;
-      display:grid; gap:14px;
-    }
-    h1{
-      margin:0;
-      font-size:clamp(30px, 4.1vw, 52px);
-      letter-spacing:-.4px;
-    }
-    .lead{color:var(--muted); max-width:70ch}
-    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
-    .pill{
-      border:1px solid var(--line);
-      padding:7px 10px;
-      border-radius:999px;
-      color:rgba(255,255,255,.86);
-      font-size:13px;
-      background:rgba(255,255,255,.04);
-    }
-    .grid{
-      display:grid; gap:16px;
-      grid-template-columns:repeat(12,1fr);
-      margin-top:16px;
-    }
-    .card{
-      grid-column:span 12;
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border-radius:var(--r);
-      padding:18px;
-      box-shadow:0 10px 30px rgba(0,0,0,.25);
-    }
-    @media (min-width: 900px){
-      .col6{grid-column:span 6}
-      .col4{grid-column:span 4}
-      .col8{grid-column:span 8}
-    }
-    h2{margin:0 0 8px; font-size:22px}
-    p{margin:8px 0}
-    .muted{color:var(--muted)}
-    .kv{
-      display:grid;
-      grid-template-columns: 120px 1fr;
-      gap:10px 14px;
-      margin-top:10px;
-      font-size:15px;
-    }
-    .kv div:nth-child(odd){color:rgba(255,255,255,.78)}
-    .kv a{color:#fff}
-    .divider{height:1px; background:var(--line); margin:14px 0}
-    .form{
-      display:grid; gap:10px;
-      margin-top:10px;
-    }
-    input, textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(0,0,0,.25);
-      color:var(--text);
-      font:inherit;
-    }
-    @media (max-width: 600px){
-  .container.center{
-    padding-top: 72px;
-    padding-bottom: 96px;
-  }
-  .stack{ gap: 56px; }
-  .page-title{ font-size: 28px; }
-}
-
-    textarea{min-height:120px; resize:vertical}
-    .small{font-size:13px; color:rgba(255,255,255,.72)}
-    
-  footer{
-  border-top: none;   /* zwarte lijn weg */
-  margin-top: 64px;
-  padding: 12px 0 18px;
-  text-align: center;
-  font-size: 12px;
-  color: #111;
-}
-    footer .inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:18px var(--pad);
-      color:rgba(255,255,255,.72);
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:space-between;
-      font-size:13px;
-    }
-
-h1, .page-title{
-  letter-spacing: 0.08em;
-}
+/* =========================
+   Intro
+   ========================= */
 
 #intro{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-}
-.scroll-hint{
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-.scroll-hint{
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  transform: translateX(-50%);
-  display: grid;
-  place-items: center;
-  gap: 6px;
-  color: #111;
-  opacity: 0.65;
-  pointer-events: none;
-}
-
-.scroll-hint .chevron{
-  width: 16px;
-  height: 16px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  animation: hint-bounce 1.6s ease-in-out infinite;
-}
-
-.scroll-hint .hint-text{
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-@keyframes hint-bounce{
-  0%, 100% { transform: translateY(0) rotate(45deg); opacity: .6; }
-  50%      { transform: translateY(6px) rotate(45deg); opacity: .9; }
-}
-
-/* Verberg hint zodra intro weggaat */
-#intro.hide .scroll-hint{
-  opacity: 0;
-}
-
-#intro.hide{
-  transform: translateY(-100%);
-  pointer-events: none;
-}
-
-/* Intro logo in het midden */
-.intro-logo{
-  position:absolute;
+  position:fixed;
   inset:0;
-  display:grid;
-  place-items:center;
-  z-index:2;
-}
-
-.intro-logo-img{
-  width:min(320px, 60vw);   /* pas aan */
-  height:auto;
-  display:block;
-}
-header, main, footer{
-  transition: opacity 0.5s ease;
-}
-html.intro-active header{
-  opacity: 0;
-}
-
-header{
-  transition: opacity 0.4s ease;
-  opacity: 1;
-}  
-
-html.intro-active main,
-html.intro-active footer{
-  opacity: 0;
+  z-index:9999;
 }
 
 .intro-bg{
   position:absolute;
   inset:0;
-  background: #fff;
+  background:#fff;
 }
 
 .intro-overlay{
@@ -275,16 +100,6 @@ html.intro-active footer{
   );
 }
 
-}
-.intro-logo-img{
-  transition: transform 0.9s cubic-bezier(.2,.7,.2,1), opacity 0.6s ease;
-}
-
-#intro.hide .intro-logo-img{
-  transform: scale(0.6) translateY(-40px);
-  opacity: 0;
-}
-
 .intro-logo{
   position:absolute;
   inset:0;
@@ -293,28 +108,64 @@ html.intro-active footer{
   z-index:2;
 }
 
-.intro-logo span{
-  font-size:clamp(48px, 8vw, 96px);
-  letter-spacing:0.25em;
-  font-weight:700;
-  color:#fff;
-  opacity:0;
-  animation:logoFadeIn 1.4s ease forwards;
-}
-
-@keyframes logoFadeIn{
-  to{ opacity:1 }
+.intro-logo-img{
+  width:min(320px,60vw);
+  height:auto;
+  transition:transform .9s cubic-bezier(.2,.7,.2,1), opacity .6s ease;
 }
 
 #intro.hide{
-    opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  transform:translateY(-100%);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
-@keyframes introFadeOut{
-  to{ opacity:0; visibility:hidden; }
+#intro.hide .intro-logo-img{
+  transform:scale(.6) translateY(-40px);
+  opacity:0;
 }
+
+/* Scroll hint */
+.scroll-hint{
+  position:absolute;
+  left:50%;
+  bottom:28px;
+  transform:translateX(-50%);
+  display:grid;
+  place-items:center;
+  color:#111;
+  opacity:.65;
+  pointer-events:none;
+}
+
+.scroll-hint .chevron{
+  width:16px;
+  height:16px;
+  border-right:2px solid currentColor;
+  border-bottom:2px solid currentColor;
+  transform:rotate(45deg);
+  animation:hint-bounce 1.6s ease-in-out infinite;
+}
+
+@keyframes hint-bounce{
+  0%,100%{transform:translateY(0) rotate(45deg);opacity:.6;}
+  50%{transform:translateY(6px) rotate(45deg);opacity:.9;}
+}
+
+#intro.hide .scroll-hint{ opacity:0; }
+
+html.intro-active header,
+html.intro-active main,
+html.intro-active footer{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* =========================
+   Header
+   ========================= */
+
 .nav-center{
   display:flex;
   justify-content:center;
@@ -323,496 +174,159 @@ html.intro-active footer{
 }
 
 .nav-logo{
-  height:56px;   /* mag je later aanpassen */
+  height:56px;
   width:auto;
-  display:block;
-}
-/* Verberg header tijdens intro */
-html.intro-active header{
-  opacity:0;
-  pointer-events:none;
 }
 
-/* Zachte fade-in na intro */
-header, main, footer {
-  transition: opacity 0.6s ease;
-}
-/* Layout voor voorpagina info */
-.container{
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 36px 18px 60px;
+/* =========================
+   Layout
+   ========================= */
+
+main{
+  flex:1;
 }
 
-.info-grid{
-  display: grid;
-  gap: 18px;
-  grid-template-columns: 1fr;
+.container.center{
+  max-width:720px;
+  margin:0 auto;
+  padding:96px 18px 72px;
+  text-align:center;
 }
 
-@media (min-width: 900px){
-  .info-grid{
-    grid-template-columns: 1.2fr 0.8fr;
-    align-items: start;
-  }
-}
-
-.info-card{
-  border: 1px solid rgba(0,0,0,.10);
-  border-radius: 18px;
-  padding: 18px;
-  background: #fff;
+.stack{
+  display:grid;
+  gap:34px;
 }
 
 .page-title{
-  margin: 0;
-  font-size: 34px;
-  letter-spacing: -0.2px;
-  color: #111;
+  margin:0;
+  font-size:34px;
+  letter-spacing:.08em;
+  color:var(--text);
 }
 
-.page-subtitle{
-  margin: 6px 0 0;
-  color: #666;
-}
-
-.divider{
-  height: 1px;
-  background: rgba(0,0,0,.10);
-  margin: 14px 0;
-}
-
-.kv{
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 10px 14px;
-  margin-top: 10px;
-  color: #111;
-}
-
-.kv div:nth-child(odd){
-  color: #666;
-}
-
-.kv a{
-  color: #111;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.actions{
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 14px;
-}
-
-.btn{
-  display: inline-block;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.18);
-  text-decoration: none;
-  color: #111;
-  background: #fff;
-}
-
-.btn:hover{
-  border-color: rgba(0,0,0,.28);
-}
-
-.hours{
-  margin-top: 10px;
-  display: grid;
-  gap: 8px;
-}
-
-.hours .row{
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  gap: 12px;
-  padding: 8px 0;
-  border-bottom: 1px dashed rgba(0,0,0,.12);
-  color: #111;
-}
-
-.hours .row:last-child{
-  border-bottom: none;
-}
-
-.note{
-  margin: 12px 0 0;
-  color: #666;
-  font-size: 13px;
-}
-/* Intro: altijd betrouwbaar verbergen */
-#intro{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-}
-
-#intro.hide{
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-/* Gecentreerde voorpagina zonder randjes */
-.container.center{
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 96px 18px 72px;
-  text-align: center;
-}
-
-.stack{
-  display: grid;
-  gap: 96px;
-}
-.divider{
-  width: 140px;
-  height: 1px;
-  margin: 10px auto 0;
-  background: rgba(0,0,0,.18);
-}
-
-
-.block{
-  padding: 0;        /* geen kaart/rand */
-  background: none; /* geen achtergrond */
-  border: none;     /* geen randjes */
-}
-
-.center-hours{
-  margin: 0 auto;
-  max-width: 420px;
-}
-
-.hours .row{
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 12px;
-  padding: 8px 0;
-  border-bottom: none; /* geen streepjes */
-  color: #111;
-}
-
-.center-kv{
-  margin: 12px auto 0;
-  max-width: 420px;
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 10px 14px;
-  text-align: left; /* labels links, waarden rechts */
-}
-
-.center-actions{
-  justify-content: center;
-}
-
-header, main, footer{
-  position: relative;
-  z-index: 1;
-}
-  /* ✅ Achtergrond voor ALLE schermen */
-html{
-  background: #fff url("images/bricks2.png") center center / cover no-repeat;
-}
-
-body{
-  background: transparent !important;
-}
-
-/* ✅ geen extra baksteen-grid meer */
-body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: rgba(255,255,255,0.00); /* zet naar 0.06 als je iets meer contrast wil */
-}
-
-header, main, footer{
-  position: relative;
-  z-index: 1;
-}
-@media (max-width: 600px){
-  body::before{
-    opacity: .10; /* nog subtieler op mobiel */
-}
-.container.center{
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 56px 18px 72px;
-  text-align: center;
-}
-}
-@media (max-width: 768px){
-  html{ background-attachment: scroll; }
-}
-
-.stack{
-  display: grid;
-  gap: 34px;
-}
-
-.hours-text{
-  line-height: 1.7;
-  color: #111;
-}
-
-.hours-text p{
-  margin: 10px 0;
-}
-
-.contact-text{
-  line-height: 1.7;
-}
-
-.contact-text a{
-  color: inherit;
-  text-decoration: none;
-}
-
-.contact-text a:hover{
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-header{
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.5s ease;
-}
-
-html.intro-active header{
-  opacity: 0; /* verborgen tijdens intro */
-}
-
-
-html:not(.intro-active) header{
-  opacity: 1;
-  transform: translateY(0);
-}
-    /* Intro altijd bovenaan en weg wanneer .hide */
-#intro{
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-}
-
-#intro.hide{
-  transform: translateY(-100%);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* Alleen de 2e sectie (Contact) kleiner en iets lager */
-.stack > div:nth-of-type(2){
-  font-size: 0.9rem;     /* kleiner */
-  margin-top: 48px;     /* verder naar beneden */
-  opacity: 0.95;
-}
-
-/* Contact-titel iets kleiner dan Openingsuren */
-.stack > div:nth-of-type(2) .page-title{
-  font-size: 22px;
-}
-/* CONTACT hard kleiner + verder weg */
-.stack > div:nth-of-type(2){
-  font-size: 0.8rem !important;   /* echt duidelijk kleiner */
-  margin-top: 140px !important;  /* VEEL verder naar beneden */
-  opacity: 0.9;
-}
-
-/* Contact-titel kleiner */
-.stack > div:nth-of-type(2) .page-title{
-  font-size: 20px !important;
-}
-/* Contact (titel + knoppen) kleiner en verder naar beneden */
-.stack > div:has(> h1.page-title:contains("Contact")){
-  font-size: 0.8rem;
-  margin-top: 140px;   /* veel ruimte t.o.v. Openingsuren */
-  opacity: 0.9;
-}
-
-/* Contact titel kleiner */
-.stack > div:has(> h1.page-title:contains("Contact")) .page-title{
-  font-size: 20px;
-}
-
-/* Knoppen compacter */
-.stack > div:has(> h1.page-title:contains("Contact")) .btn{
-  padding: 8px 12px;
-  font-size: 0.8rem;
-}
-/* Contact (2e blok) kleiner en verder naar beneden */
-.stack > div:nth-child(2){
-  font-size: 0.8rem !important;
-  margin-top: 140px !important;
-  opacity: 0.9;
-}
-
-/* Contact titel kleiner */
-.stack > div:nth-child(2) .page-title{
-  font-size: 20px !important;
-}
-
-/* Knoppen compacter */
-.stack > div:nth-child(2) .btn{
-  padding: 8px 12px;
-  font-size: 0.8rem;
-}
-html, body{
-  height: 100%;
-}
-
-body{
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main{
-  flex: 1;   /* duwt footer naar beneden */
-}
-/* CONTACT: kleiner + verder van Openingsuren */
-.stack > div:nth-child(2){
-  margin-top: 64px !important;  /* VEEL verder naar beneden */
-  font-size: 0.8rem !important; /* duidelijk kleiner */
-  opacity: 0.9;
-}
-
-/* Contact titel kleiner */
-.stack > div:nth-child(2) .page-title{
-  font-size: 20px !important;
-}
-
-/* Knoppen compacter */
-.stack > div:nth-child(2) .btn{
-  padding: 8px 12px !important;
-  font-size: 0.8rem !important;
-}
-/* Contact kleiner + verder weg */
-.stack > div:nth-child(2){
-  margin-top: 64px !important;
-  font-size: 0.8rem !important;
-  opacity: 0.9;
-}
-
-/* Contact titel kleiner */
-.stack > div:nth-child(2) .page-title{
-  font-size: 20px !important;
-}
-
-/* Contact knoppen compacter */
-.stack > div:nth-child(2) .btn{
-  padding: 8px 12px !important;
-  font-size: 0.8rem !important;
-}
-body{
-  background-repeat: repeat;
-  image-rendering: crisp-edges;
-}
-
-main, header, footer{
-  position: relative;
-  z-index: 1;
-}
 .status{
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  margin-top: 8px;
+  font-weight:600;
+  letter-spacing:.04em;
+  margin-top:8px;
 }
 
 .status-sub{
-  font-size: 0.9rem;
-  opacity: 0.7;
+  font-size:.9rem;
+  opacity:.7;
+}
+
+.hours-text{
+  line-height:1.7;
+}
+
+.hours-text p{
+  margin:10px 0;
+}
+
+.divider{
+  width:140px;
+  height:1px;
+  margin:10px auto 0;
+  background:var(--line);
+}
+
+/* Buttons */
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:14px;
 }
 
 .btn{
-  border-radius: 999px;     /* pill shape */
-  padding: 10px 16px;
-  transition: all .2s ease;
+  display:inline-block;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.18);
+  text-decoration:none;
+  color:var(--text);
+  background:#fff;
+  transition:all .2s ease;
 }
 
 .btn:hover{
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transform:translateY(-1px);
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
 }
+
+/* Contact */
+
+.contact-text{
+  line-height:1.7;
+}
+
+.contact-text p{
+  margin:8px 0;
+}
+
+.contact-text a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.contact-text a:hover{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* Contact kleiner dan openingsuren */
+.stack > div:nth-child(2){
+  font-size:.88rem;
+  opacity:.92;
+}
+
+.stack > div:nth-child(2) .page-title{
+  font-size:24px;
+}
+
+/* =========================
+   Footer
+   ========================= */
+
 footer{
-  border-top: 1px solid rgba(0,0,0,0.15);
-  color: #666;
-}
-@font-face{
-  font-family: "CopperplateWeb";
-  src: url("fonts/Copperplate.woff2") format("woff2"),
-       url("fonts/Copperplate.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+  border-top:none;
+  margin-top:64px;
+  padding:12px 0 18px;
+  font-size:12px;
+  color:var(--muted);
 }
 
-/* Forceer Copperplate op alles */
-html, body, button, input, textarea, a{
-  font-family: "CopperplateWeb", "Copperplate", "Copperplate Gothic Light", serif !important;
-}
-.scroll-hint{
-  position: absolute;
-  left: 50%;
-  bottom: 28px;
-  transform: translateX(-50%);
-  display: grid;
-  place-items: center;
-  gap: 6px;
-  color: #111;           /* past bij je witte intro */
-  opacity: 0.65;
-  pointer-events: none; /* hint is niet klikbaar */
+footer .inner{
+  max-width:720px;
+  margin:0 auto;
+  padding:0 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:space-between;
 }
 
-.scroll-hint .chevron{
-  width: 16px;
-  height: 16px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  animation: hint-bounce 1.6s ease-in-out infinite;
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width:600px){
+  .container.center{
+    padding:72px 16px 56px;
+  }
+  .page-title{ font-size:28px; }
+  .stack{ gap:24px; }
 }
 
-.scroll-hint .hint-text{
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-  /* ✅ Nieuwe achtergrond (geen repeat, full screen) */
-html{
-  background: #fff url("images/bricks2.png") center center / cover no-repeat;
-}
-
-/* Verberg hint zodra intro weggaat */
-#intro.hide .scroll-hint{
-  opacity: 0;
-}   
-/* Maak pagina niet-scrollbaar */
-html, body{
-  height: 100%;
-  overflow: hidden;
-}    
-/* Scroll blokkeren op smartphone */
-@media (max-width: 768px){
+@media (max-width:768px){
   html, body{
-    height: 100%;
-    overflow: hidden;
-    overscroll-behavior: none;
-    touch-action: none; /* voorkomt swipe-scroll op mobiel */
+    overscroll-behavior:none;
+    touch-action:none;
+  }
 }
-}
-  html, body{
-  height: 100%;
-  overflow: hidden;
-}
-  </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -1072,6 +586,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
