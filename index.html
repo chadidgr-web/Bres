@@ -541,8 +541,14 @@ body{
 .container.center{
   max-width: 720px;
   margin: 0 auto;
-  padding: 56px 18px 72px;
+  padding: 0 18px;
   text-align: center;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* alles naar onder */
+  padding-bottom: 120px; /* professionele ruimte onderaan */
 }
 
 .stack{
@@ -1067,6 +1073,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
