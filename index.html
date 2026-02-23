@@ -813,6 +813,44 @@ html, body{
     overscroll-behavior: none;
     touch-action: none; /* voorkomt swipe-scroll op mobiel */
   }
+  /* ✅ Mobile: zorg dat alles in 1 scherm past (zonder scroll) */
+@media (max-width: 600px){
+  .container.center{
+    padding: 24px 16px 28px !important; /* minder bottom padding */
+  }
+
+  .stack{
+    gap: 18px !important;               /* minder ruimte tussen blokken */
+  }
+
+  .page-title{
+    font-size: 26px !important;         /* net iets kleiner */
+  }
+
+  .status-sub{
+    font-size: 0.85rem !important;
+  }
+
+  .hours-text{
+    line-height: 1.55 !important;
+  }
+
+  .contact-text p{
+    margin: 6px 0 !important;
+  }
+
+  .btn{
+    padding: 8px 12px !important;       /* compactere knoppen */
+    font-size: 0.85rem !important;
+  }
+
+  /* 🚫 Belangrijk: verwijder/neutraliseer je oude "duw Contact naar beneden" hacks */
+  .stack > div:nth-child(2){
+    margin-top: 0 !important;
+    font-size: 0.9rem !important;
+    opacity: 1 !important;
+  }
+}
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1073,6 +1111,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
