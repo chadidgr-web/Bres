@@ -509,18 +509,30 @@ header, main, footer {
 .center-actions{
   justify-content: center;
 }
-/* Subtiele baksteen-achtergrond (CSS only) */
-body::before{ content:""; 
-position: fixed;
-inset: 0;
-pointer-events: none; 
-background: 
-linear-gradient(transparent 94%, rgba(0,0,0,.08) 0), 
-linear-gradient(90deg, transparent 94%, rgba(0,0,0,.08) 0); 
-background-size: 56px 28px; /* baksteen formaat */ 
-opacity: .18; /* subtiel effect */ 
-z-index: 0; 
+
+header, main, footer{
+  position: relative;
+  z-index: 1;
 }
+  /* ✅ Achtergrond voor ALLE schermen */
+html{
+  background: #fff url("images/bricks2.png") center center / cover no-repeat;
+}
+
+body{
+  background: transparent !important;
+}
+
+/* ✅ geen extra baksteen-grid meer */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: rgba(255,255,255,0.00); /* zet naar 0.06 als je iets meer contrast wil */
+}
+
 header, main, footer{
   position: relative;
   z-index: 1;
@@ -529,22 +541,9 @@ header, main, footer{
   body::before{
     opacity: .10; /* nog subtieler op mobiel */
   }
-/* Bakstenen SVG als subtiele achtergrond */
-body{
-  background-image: url("images/bricks2.png");
-  background-repeat: no-repeat;              /* geen herhaling */
-  background-position: center center;        /* gecentreerd */
-  background-size: cover;                    /* vult hele scherm */
-  background-attachment: fixed;              /* blijft vast */
-  background-color: #ffffff;
-}
-  /* body transparant zodat html-background zichtbaar blijft */
-body{
-  background: transparent !important;
-}
 
 /* 2) Jouw overlay uit of véél zwakker (anders wordt alles wit) */
-body::before{
+{
   background: rgba(255,255,255,0.08) !important; /* probeer 0.00–0.12 */
 }
 .container.center{
@@ -720,17 +719,6 @@ body{
   background-repeat: repeat;
   image-rendering: crisp-edges;
 }
-body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    rgba(255,255,255,0.92),
-    rgba(255,255,255,0.92)
-  );
-  pointer-events: none;
-  z-index: 0;
-}
 
 main, header, footer{
   position: relative;
@@ -806,15 +794,6 @@ html{
   background: #fff url("images/bricks2.png") center center / cover no-repeat;
 }
 
-body{
-  background: transparent !important;
-}
-
-/* ✅ Als je een overlay gebruikt: maak hem héél licht of uit */
-body::before{
-  background: rgba(255,255,255,0.00) !important; /* zet naar 0.06 als je toch wat contrast wil */
-}
-
 /* Verberg hint zodra intro weggaat */
 #intro.hide .scroll-hint{
   opacity: 0;
@@ -832,6 +811,7 @@ html, body{
     overscroll-behavior: none;
     touch-action: none; /* voorkomt swipe-scroll op mobiel */
   }
+}
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1092,6 +1072,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
