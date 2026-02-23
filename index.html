@@ -540,17 +540,13 @@ header, main, footer{
 @media (max-width: 600px){
   body::before{
     opacity: .10; /* nog subtieler op mobiel */
-  }
-
-/* 2) Jouw overlay uit of véél zwakker (anders wordt alles wit) */
-{
-  background: rgba(255,255,255,0.08) !important; /* probeer 0.00–0.12 */
 }
 .container.center{
   max-width: 720px;
   margin: 0 auto;
   padding: 56px 18px 72px;
   text-align: center;
+}
 }
 @media (max-width: 768px){
   html{ background-attachment: scroll; }
@@ -811,10 +807,10 @@ html, body{
     overscroll-behavior: none;
     touch-action: none; /* voorkomt swipe-scroll op mobiel */
 }
+}
   html, body{
   height: 100%;
   overflow: hidden;
-}
 }
   </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1076,6 +1072,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
