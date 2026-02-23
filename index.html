@@ -178,6 +178,41 @@ footer .inner{
   gap:10px;
   justify-content:space-between;
 }
+/* =========================
+   Fix: Contact kleiner + meer spacing
+   ========================= */
+
+/* Meer lucht tussen Openingsuren en Contact */
+.stack{
+  gap: 44px; /* was te compact; 40–60 is mooi */
+}
+
+/* Contact blok kleiner + zachter */
+.stack > div:nth-child(2){
+  font-size: 0.86rem;
+  opacity: 0.92;
+}
+
+/* Contact titel kleiner dan Openingsuren */
+.stack > div:nth-child(2) .page-title{
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+/* Minder dichtebrij in contactregels */
+.stack > div:nth-child(2) .contact-text{
+  line-height: 1.85;
+}
+
+.stack > div:nth-child(2) .contact-text p{
+  margin: 10px 0;
+}
+
+/* Knoppen iets compacter in Contact */
+.stack > div:nth-child(2) .btn{
+  padding: 9px 14px;
+  font-size: 0.85rem;
+}
 
 /* Mobile */
 @media (max-width:600px){
@@ -187,6 +222,10 @@ footer .inner{
 }
 @media (max-width:768px){
   html, body{ overscroll-behavior:none; touch-action:none; }
+}
+@media (max-width: 600px){
+  .stack{ gap: 26px; }
+  .stack > div:nth-child(2) .page-title{ font-size: 22px; }
 }
     </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -448,6 +487,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
