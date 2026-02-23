@@ -538,20 +538,23 @@ body{
   background-attachment: fixed;              /* blijft vast */
   background-color: #ffffff;
 }
-  
-      body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.85);
-  pointer-events: none;
-  z-index: 0;
+  /* body transparant zodat html-background zichtbaar blijft */
+body{
+  background: transparent !important;
+}
+
+/* 2) Jouw overlay uit of véél zwakker (anders wordt alles wit) */
+body::before{
+  background: rgba(255,255,255,0.08) !important; /* probeer 0.00–0.12 */
 }
 .container.center{
   max-width: 720px;
   margin: 0 auto;
   padding: 56px 18px 72px;
   text-align: center;
+}
+@media (max-width: 768px){
+  html{ background-attachment: scroll; }
 }
 
 .stack{
@@ -1076,6 +1079,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
