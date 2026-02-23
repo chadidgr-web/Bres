@@ -801,6 +801,19 @@ html, body, button, input, textarea, a{
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+  /* ✅ Nieuwe achtergrond (geen repeat, full screen) */
+html{
+  background: #fff url("images/bricks2.png") center center / cover no-repeat;
+}
+
+body{
+  background: transparent !important;
+}
+
+/* ✅ Als je een overlay gebruikt: maak hem héél licht of uit */
+body::before{
+  background: rgba(255,255,255,0.00) !important; /* zet naar 0.06 als je toch wat contrast wil */
+}
 
 /* Verberg hint zodra intro weggaat */
 #intro.hide .scroll-hint{
@@ -1079,6 +1092,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
