@@ -281,6 +281,18 @@ body::after{
   .stack{ gap: 26px; }
   .stack > div:nth-child(2) .page-title{ font-size: 22px; }
 }
+  /* =========================
+   Mobile: openingsuren lager + meer gap
+   ========================= */
+@media (max-width: 600px){
+  .container.center{
+    padding-top: 88px;   /* was 72px → duwt alles iets naar beneden */
+  }
+
+  .stack{
+    gap: 34px;           /* groter gat tussen Openingsuren & Contact */
+  }
+}
     </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -541,6 +553,7 @@ function isBresOpen(){
 </script>
 </body>
 </html>
+
 
 
 
