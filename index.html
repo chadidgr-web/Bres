@@ -293,6 +293,44 @@ body::after{
     gap: 90px;           /* groter gat tussen Openingsuren & Contact */
   }
 }
+    /* =========================
+   Floating menu knop
+   ========================= */
+
+.menu-floating{
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10;
+
+  padding: 12px 16px;
+
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+
+  border-radius: 2px; /* industrieel → niet rond */
+  border: 1px solid #111;
+
+  transition: all .25s ease;
+}
+
+/* hover = subtiel */
+.menu-floating:hover{
+  background: transparent;
+  color: #111;
+}
+    @media (max-width: 600px){
+  .menu-floating{
+    bottom: 18px;
+    right: 18px;
+    padding: 10px 14px;
+    font-size: 0.65rem;
+  }
+}
     </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -551,6 +589,7 @@ function isBresOpen(){
     window.addEventListener("touchmove", onTouchMove, { passive: true });
   });
 </script>
+  <a href="menu.pdf" class="menu-floating">MENU</a>
 </body>
 </html>
 
